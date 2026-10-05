@@ -105,6 +105,21 @@ Pick by job: **Menu** = list of actions; **Popover** = a little extra content or
 - Modal, ConfirmDialog and Sheet trap focus, close on Esc, lock scroll and restore focus to the opener. Footer order: outline cancel, then the primary or danger action, whose label names the action ("删除海报", not "确定").
 - Positioning is simple (below the trigger, start or end aligned); there is no collision flipping yet. Keep triggers away from the bottom edge, or use a Sheet on phones.
 
+## Standard sizes (identical in every app)
+| Thing | Size | Class |
+|---|---|---|
+| Header | **72px** tall (+1px border), content centred, whatever is inside (language toggle, buttons, nothing); inner content at most 48px | `ds-header-row` (built into `SiteHeader`) |
+| Logo | **24px** high (`h-6`), always the graphic mark | |
+| Page title | **36px**, 48px from 640px, serif 500, tracking -0.025em. Detail pages with long titles: 30px / 36px | `ds-title`, `ds-title-sm` |
+| Page head | title + lede on the left, actions right; **40px** below the header (48px from 640px) | `ds-page-head`, `ds-lede`, `<PageTitle>` |
+| Buttons | **sm 32 / md 40 / lg 48px**; icon buttons are square at the same size | `ds-btn` `-sm` `-lg` `-icon` |
+| Inputs | **sm 32 / md 40 / lg 48px** | `ds-input` `-sm` `-lg` |
+| Search | the 40px input with a leading icon | `ds-search` / `<SearchInput>` |
+| Segmented tabs / language toggle | **40px** | `ds-tabs` |
+| Touch (`pointer: coarse`) | controls 44px, input text 16px | automatic |
+
+Use: page-level action (new poster, new album, create group) = **lg**; toolbar and in-card actions, search and filter tabs = **md** (they line up in one 40px row); compact row actions = **sm**. Don't set your own heights or text sizes on these. The style guide's "Sizes & page head" section measures them live, and `npm test` asserts them.
+
 ## Page width
 One width across all 大道大商 apps: the **72rem frame** (1152px, centered), as on draw.gpgb.app. Gutters are 16px, then 24px from 640px, so desktop content is **1104px** wide. The header and the page content share the frame.
 - **Standard:** `ds-container` (72rem). Galleries, dashboards, chat, lists, forms-with-context.

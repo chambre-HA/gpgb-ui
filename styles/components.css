@@ -36,9 +36,12 @@
   .ds-hint { font-size: 12px; color: var(--color-ink-faint); }
 
   /* ---- Buttons: pills. One primary per view. ---- */
+  /* Control heights are a standard, not a by-product of padding: sm 32px, md 40px, lg 48px (buttons, inputs, tabs). Page-level
+     action = lg; toolbar and in-card actions = md; compact row actions = sm. */
   .ds-btn {
+    --ds-h: 40px; min-height: var(--ds-h);
     display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-    padding: 10px 20px; font-size: 14px; font-weight: 500; line-height: 1.3;
+    padding: 0 20px; font-size: 14px; font-weight: 500; line-height: 1.3;
     border: 1px solid transparent; border-radius: var(--radius-pill); cursor: pointer;
     transition: background-color var(--duration-fast) ease-out, color var(--duration-fast) ease-out,
       border-color var(--duration-fast) ease-out, box-shadow var(--duration-fast) ease-out,
@@ -46,9 +49,9 @@
   }
   .ds-btn:active:not(:disabled) { transform: scale(0.97); }
   .ds-btn:disabled, .ds-btn[aria-disabled='true'] { opacity: 0.45; cursor: not-allowed; }
-  .ds-btn-sm { padding: 6px 14px; font-size: 13px; }
-  .ds-btn-lg { padding: 12px 24px; font-size: 15px; }
-  .ds-btn-icon { padding: 8px; aspect-ratio: 1; }
+  .ds-btn-sm { --ds-h: 32px; padding: 0 14px; font-size: 13px; }
+  .ds-btn-lg { --ds-h: 48px; padding: 0 24px; font-size: 15px; }
+  .ds-btn-icon { padding: 0; width: var(--ds-h); }
   .ds-btn-primary { background: var(--color-accent); color: var(--color-on-accent); box-shadow: var(--shadow-sm); }
   .ds-btn-primary:hover:not(:disabled) { background: var(--color-accent-hover); box-shadow: var(--shadow-md); }
   .ds-btn-outline { background: var(--color-surface); color: var(--color-ink); border-color: var(--color-border-soft); }
@@ -70,7 +73,7 @@
   /* ---- Forms ---- */
   .ds-label { display: block; margin-bottom: 6px; font-size: 13px; font-weight: 500; color: var(--color-ink); }
   .ds-input {
-    width: 100%; padding: 10px 14px; font-size: 14px; color: var(--color-ink);
+    width: 100%; min-height: 40px; padding: 9px 14px; font-size: 14px; line-height: 1.4; color: var(--color-ink);
     background: var(--color-surface); border: 1px solid var(--color-border-strong);
     border-radius: var(--radius-md); transition: border-color var(--duration-fast) ease-out;
   }
@@ -80,7 +83,9 @@
   .ds-input:disabled { opacity: 0.55; cursor: not-allowed; }
   .ds-input[aria-invalid='true'] { border-color: var(--color-danger); }
   .ds-input[aria-invalid='true']:focus-visible { outline-color: var(--color-danger); border-color: var(--color-danger); }
-  .ds-input-sm { padding: 7px 12px; font-size: 13px; }
+  .ds-input-sm { min-height: 32px; padding: 5px 12px; font-size: 13px; }
+  .ds-input-lg { min-height: 48px; padding: 12px 16px; font-size: 15px; }
+  textarea.ds-input, select.ds-input-sm, textarea.ds-input-sm { min-height: 0; }
   textarea.ds-input { resize: vertical; min-height: 88px; line-height: 1.6; }
   .ds-error { margin-top: 6px; font-size: 12px; color: var(--color-danger); }
   /* Checkbox / radio: native control, brand-coloured, with a comfortable hit target. */
@@ -126,11 +131,11 @@
 
   /* ---- Segmented control / tabs (role=tablist) ---- */
   .ds-tabs {
-    display: flex; gap: 6px; padding: 4px; width: fit-content; background: var(--color-surface);
+    display: flex; gap: 4px; padding: 3px; width: fit-content; background: var(--color-surface);   /* 3 + 32 + 3 + 2 border = 40px */
     border: 1px solid var(--color-border-soft); border-radius: var(--radius-md);
   }
   .ds-tab {
-    padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--color-ink-soft); cursor: pointer;
+    display: inline-flex; align-items: center; min-height: 32px; padding: 0 12px; font-size: 12px; font-weight: 500; color: var(--color-ink-soft); cursor: pointer;
     border: 0; background: transparent; border-radius: var(--radius-sm);
     transition: background-color var(--duration-fast) ease-out, color var(--duration-fast) ease-out;
   }
@@ -282,10 +287,26 @@
   @media (min-width: 1024px) { .ds-shell { grid-template-columns: 240px minmax(0, 1fr); } .ds-shell-wide { grid-template-columns: 280px minmax(0, 1fr); } }
   .ds-shell > aside { align-self: start; }
   @media (min-width: 1024px) { .ds-shell > aside { position: sticky; top: 24px; } }
-  .ds-page-title { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 32px; }
+  /* Page head: the same position and type on every page. Title 36px (48px from 640px), 40px (48px) above it, optional lede and
+     actions on the right. Detail pages with long titles use ds-title-sm (30px / 36px). */
+  .ds-page-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 24px; padding-top: 40px; padding-bottom: 24px; }
+  @media (min-width: 640px) { .ds-page-head { padding-top: 48px; padding-bottom: 32px; } }
+  .ds-title { font-family: var(--font-display); font-weight: 500; font-size: 36px; line-height: 1.15; letter-spacing: -0.025em; text-wrap: balance; }
+  .ds-title-sm { font-family: var(--font-display); font-weight: 500; font-size: 30px; line-height: 1.2; letter-spacing: -0.02em; text-wrap: balance; }
+  @media (min-width: 640px) { .ds-title { font-size: 48px; } .ds-title-sm { font-size: 36px; } }
+  .ds-lede { margin-top: 12px; max-width: 48rem; font-size: 14px; line-height: 1.7; color: var(--color-ink-soft); }
+  @media (min-width: 640px) { .ds-lede { font-size: 15px; } }
+  /* Search field: a ds-input with a leading icon. <div class="ds-search"><svg/><input class="ds-input" type="search"></div> */
+  .ds-search { position: relative; display: block; width: 100%; }
+  .ds-search > svg { position: absolute; left: 12px; top: 50%; width: 16px; height: 16px; transform: translateY(-50%); color: var(--color-ink-faint); pointer-events: none; }
+  .ds-search > .ds-input { padding-left: 38px; }
+  .ds-search > .ds-input::-webkit-search-cancel-button { display: none; }
 
   /* ---- Header / layout ---- */
   .ds-header { border-bottom: 1px solid var(--color-border-soft); }
+  /* Every header is the same height whatever sits in it (language toggle, buttons, nothing): 72px + 1px border, content centred.
+     The logo is always h-6 (24px). Content must not be taller than 48px. */
+  .ds-header-row { min-height: 72px; padding-block: 12px; }
   /* Hairline between the 大道大商 mark and the app name, so the graphic logo and the app title don't read as one phrase. */
   .ds-brand-divider { width: 1px; height: 20px; flex-shrink: 0; background: var(--color-border-strong); opacity: 0.55; }
   /* Page width: the 72rem frame (1152px, = draw.gpgb.app), gutters 16px then 24px from 640px, so 1104px of content on desktop.
@@ -350,9 +371,9 @@
 
   /* Touch: >=16px inputs (iOS zoom) and 44px tap targets; fine pointers keep compact sizes. */
   @media (pointer: coarse) {
-    .ds-input, .ds-input-sm { font-size: 16px; padding-top: 11px; padding-bottom: 11px; }
-    .ds-btn { min-height: 44px; }
-    .ds-tab { min-height: 40px; }
+    .ds-input, .ds-input-sm { font-size: 16px; min-height: 44px; }
+    .ds-btn { min-height: max(44px, var(--ds-h)); }
+    .ds-tab { min-height: 36px; }
     .ds-menu-item { min-height: 44px; }
     .ds-nav-link { min-height: 40px; }
   }

@@ -31,12 +31,12 @@
 </header>
 
 <nav aria-label="Sections" class="ds-container overflow-x-auto py-2 lg:hidden"><div class="flex gap-4 whitespace-nowrap text-[13px]">
-  <a class="ds-link" href="#colour">Colour</a><a class="ds-link" href="#contrast">Contrast</a><a class="ds-link" href="#type">Type</a><a class="ds-link" href="#shape">Shape</a><a class="ds-link" href="#motion">Motion</a><a class="ds-link" href="#buttons">Buttons</a><a class="ds-link" href="#forms">Forms</a><a class="ds-link" href="#surfaces">Cards</a><a class="ds-link" href="#tabs">Tabs</a><a class="ds-link" href="#overlays">Overlays</a><a class="ds-link" href="#feedback">Feedback</a><a class="ds-link" href="#table">Table</a><a class="ds-link" href="#header">Header</a><a class="ds-link" href="#navigation">Navigation</a><a class="ds-link" href="#menus">Menus &amp; tips</a><a class="ds-link" href="#layouts">Layouts</a><a class="ds-link" href="#voice">Voice</a>
+  <a class="ds-link" href="#colour">Colour</a><a class="ds-link" href="#contrast">Contrast</a><a class="ds-link" href="#type">Type</a><a class="ds-link" href="#shape">Shape</a><a class="ds-link" href="#sizes">Sizes</a><a class="ds-link" href="#motion">Motion</a><a class="ds-link" href="#buttons">Buttons</a><a class="ds-link" href="#forms">Forms</a><a class="ds-link" href="#surfaces">Cards</a><a class="ds-link" href="#tabs">Tabs</a><a class="ds-link" href="#overlays">Overlays</a><a class="ds-link" href="#feedback">Feedback</a><a class="ds-link" href="#table">Table</a><a class="ds-link" href="#header">Header</a><a class="ds-link" href="#navigation">Navigation</a><a class="ds-link" href="#menus">Menus &amp; tips</a><a class="ds-link" href="#layouts">Layouts</a><a class="ds-link" href="#voice">Voice</a>
 </div></nav>
 <div class="ds-container flex gap-10 py-8">
 <nav class="sg-nav hidden w-40 shrink-0 lg:block"><div class="sticky top-20">
   <p class="ds-caption mb-2">Foundations</p>
-  <a class="ds-link" href="#colour">Colour</a><a class="ds-link" href="#contrast">Contrast</a><a class="ds-link" href="#type">Typography</a><a class="ds-link" href="#shape">Shape &amp; elevation</a><a class="ds-link" href="#motion">Motion</a>
+  <a class="ds-link" href="#colour">Colour</a><a class="ds-link" href="#contrast">Contrast</a><a class="ds-link" href="#type">Typography</a><a class="ds-link" href="#shape">Shape &amp; elevation</a><a class="ds-link" href="#sizes">Sizes &amp; page head</a><a class="ds-link" href="#motion">Motion</a>
   <p class="ds-caption mb-2 mt-5">Components</p>
   <a class="ds-link" href="#buttons">Buttons</a><a class="ds-link" href="#forms">Forms</a><a class="ds-link" href="#surfaces">Cards &amp; badges</a><a class="ds-link" href="#tabs">Tabs</a><a class="ds-link" href="#overlays">Modal &amp; toast</a><a class="ds-link" href="#feedback">Feedback</a><a class="ds-link" href="#table">Table</a><a class="ds-link" href="#header">Header</a><a class="ds-link" href="#navigation">Navigation</a><a class="ds-link" href="#menus">Menus &amp; tips</a><a class="ds-link" href="#layouts">Layouts</a><a class="ds-link" href="#voice">Voice</a>
 </div></nav>
@@ -101,6 +101,38 @@
       <div><div class="h-16 rounded-lg bg-surface" style="box-shadow:var(--shadow-md)"></div><p class="sg-code mt-2">md · hover</p></div>
       <div><div class="h-16 rounded-lg bg-surface" style="box-shadow:var(--shadow-lg)"></div><p class="sg-code mt-2">lg · overlay</p></div>
     </div>
+  </section>
+
+  <!-- SIZES -->
+  <section id="sizes" class="sg-section">
+    <h2 class="font-display text-2xl mb-2">Sizes &amp; page head</h2>
+    <p class="text-sm text-ink-soft mb-6 max-w-2xl">The same on every page of every app, whatever sits inside. The numbers next to each demo are measured live from the element on this page.</p>
+
+    <p class="mb-2 text-sm font-medium">Header <span class="sg-code">ds-header-row</span> · always 72px (+1px border); logo always h-6 (24px)</p>
+    <div class="space-y-3">
+      <div class="ds-card overflow-hidden"><div class="ds-header" data-m-h><div class="flex items-center justify-between gap-4 px-5 ds-header-row"><img src="./daoshang-horizontal-mark-dark.png" alt="" class="brand-logo h-6 w-auto" data-m-logo><span class="ds-hint">logo only</span></div></div></div>
+      <div class="ds-card overflow-hidden"><div class="ds-header" data-m-h><div class="flex items-center justify-between gap-4 px-5 ds-header-row"><img src="./daoshang-horizontal-mark-dark.png" alt="" class="brand-logo h-6 w-auto"><div class="ds-tabs" role="group" aria-label="lang"><button class="ds-tab" aria-pressed="true">中</button><button class="ds-tab" aria-pressed="false">EN</button></div></div></div></div>
+      <div class="ds-card overflow-hidden"><div class="ds-header" data-m-h><div class="flex items-center justify-between gap-4 px-5 ds-header-row"><img src="./daoshang-horizontal-mark-dark.png" alt="" class="brand-logo h-6 w-auto"><div class="flex items-center gap-2"><button class="ds-btn ds-btn-outline ds-btn-sm">工作区</button><button class="ds-btn ds-btn-primary">新建</button></div></div></div></div>
+    </div>
+    <p class="ds-hint mt-2">Measured header heights: <span id="m-headers" class="sg-code"></span> · logo height: <span id="m-logo" class="sg-code"></span></p>
+
+    <p class="mb-2 mt-10 text-sm font-medium">Page head <span class="sg-code">ds-page-head</span> + <span class="sg-code">ds-title</span> / <span class="sg-code">ds-title-sm</span> / <span class="sg-code">ds-lede</span></p>
+    <div class="sg-demo"><div class="ds-page-head !pt-0" data-m-head>
+      <div class="min-w-0"><h1 class="ds-title" data-m-title>法海问津</h1><p class="ds-lede">向济群法师的开示提问——答案只来自资料库中的文档。</p></div>
+      <div class="flex flex-wrap items-center gap-2"><button class="ds-btn ds-btn-primary ds-btn-lg">新建</button></div>
+    </div></div>
+    <p class="ds-hint mt-2">Title: <span id="m-title" class="sg-code"></span> (detail pages with long titles: <span class="ds-title-sm" style="font-size:inherit"></span><span class="sg-code">ds-title-sm</span>, 30px / 36px). The head sits 40px (48px from 640px) below the header.</p>
+
+    <p class="mb-2 mt-10 text-sm font-medium">Controls · sm 32 · md 40 · lg 48</p>
+    <div class="sg-demo space-y-5">
+      <div class="flex flex-wrap items-center gap-3"><button class="ds-btn ds-btn-primary ds-btn-sm" data-m-btn>sm</button><button class="ds-btn ds-btn-primary" data-m-btn>md</button><button class="ds-btn ds-btn-primary ds-btn-lg" data-m-btn>lg 页面主操作</button>
+        <button class="ds-btn ds-btn-outline ds-btn-sm" data-m-btn>sm</button><button class="ds-btn ds-btn-outline" data-m-btn>md</button><button class="ds-btn ds-btn-outline ds-btn-lg" data-m-btn>lg</button>
+        <button class="ds-btn ds-btn-outline ds-btn-icon ds-btn-sm" aria-label="x" data-m-btn>+</button><button class="ds-btn ds-btn-outline ds-btn-icon" aria-label="x" data-m-btn>+</button></div>
+      <div class="grid items-center gap-3 sm:grid-cols-3"><input class="ds-input ds-input-sm" placeholder="input sm" data-m-input><input class="ds-input" placeholder="input md" data-m-input><input class="ds-input ds-input-lg" placeholder="input lg" data-m-input></div>
+      <div class="flex flex-wrap items-center gap-3"><div class="ds-search max-w-xs flex-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input type="search" class="ds-input" placeholder="搜索 · Search" aria-label="Search" data-m-input></div>
+        <div class="ds-tabs" role="tablist" aria-label="t" data-m-tabs><button class="ds-tab" role="tab" aria-selected="true">全部</button><button class="ds-tab" role="tab" aria-selected="false">9:16</button><button class="ds-tab" role="tab" aria-selected="false">3:4</button></div></div>
+    </div>
+    <p class="ds-hint mt-2">Measured: buttons <span id="m-btns" class="sg-code"></span> · inputs <span id="m-inputs" class="sg-code"></span> · tabs <span id="m-tabs" class="sg-code"></span>. Page-level action = lg; toolbar and in-card actions = md; compact row actions = sm. Search = the md input.</p>
   </section>
 
   <!-- MOTION -->
@@ -257,7 +289,7 @@
   <!-- HEADER -->
   <section id="header" class="sg-section">
     <h2 class="font-display text-2xl mb-5">Header</h2>
-    <div class="ds-card overflow-hidden"><div class="ds-header"><div class="flex flex-wrap items-center justify-between gap-4 px-6 py-4">
+    <div class="ds-card overflow-hidden"><div class="ds-header"><div class="flex flex-wrap items-center justify-between gap-4 px-6 ds-header-row">
       <div class="flex items-center gap-4"><img src="./daoshang-horizontal-mark-dark.png" alt="大道大商" class="brand-logo h-6 w-auto shrink-0"><span class="ds-brand-divider" aria-hidden="true"></span><span class="font-display text-lg">一纸道笺</span></div>
       <div class="flex items-center gap-2"><button class="ds-btn ds-btn-ghost ds-btn-sm">帮助</button><button class="ds-btn ds-btn-primary ds-btn-sm">新建</button></div>
     </div></div><div class="p-6 text-sm text-ink-soft">Page content. The logo is the graphic mark (<span class="sg-code">assets/logo/daoshang-horizontal-mark-dark.png</span>, <span class="sg-code">brand-logo h-6</span>); it flips to light in dark mode.</div></div>
@@ -269,7 +301,7 @@
     <p class="text-sm text-ink-soft mb-6 max-w-2xl">Header nav is pill links; the current page gets an accent-soft wash and <span class="sg-code">aria-current="page"</span>. Below <span class="sg-code">md</span> the links move into a left drawer behind a menu button. Account and workspace controls are menus.</p>
 
     <p class="mb-2 text-sm font-medium">Header with nav, workspace, language and account</p>
-    <div class="ds-card"><div class="ds-header" style="border:0"><div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-3 px-5 py-4">
+    <div class="ds-card"><div class="ds-header" style="border:0"><div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-3 px-5 ds-header-row">
       <div class="flex items-center gap-3">
         <button class="ds-btn ds-btn-ghost ds-btn-icon md:hidden" data-open-sheet="drawer" aria-label="打开菜单" aria-haspopup="dialog"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
         <img src="./daoshang-horizontal-mark-dark.png" alt="大道大商" class="brand-logo h-6 w-auto">
@@ -524,6 +556,20 @@ const stepsEl=document.getElementById('steps');
 function paintSteps(){stepsEl.innerHTML=STEPS.map((l,i)=>{const st=i<step?'done':i===step?'current':'todo';return `<li class="flex items-center gap-1">${i?'<span class="ds-step-line" aria-hidden="true"></span>':''}<span class="ds-step" data-state="${st}" ${st==='current'?'aria-current="step"':''}><span class="ds-step-dot">${st==='done'?'<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>':i+1}</span><span class="ds-step-label">${l}</span></span></li>`}).join('')}
 document.getElementById('step-prev').onclick=()=>{step=Math.max(0,step-1);paintSteps()};
 document.getElementById('step-next').onclick=()=>{step=Math.min(STEPS.length-1,step+1);paintSteps()};paintSteps();
+
+// ---- live measurements for the Sizes section
+function measureSizes(){
+  const h=e=>Math.round(e.getBoundingClientRect().height*10)/10;
+  const q=sel=>[...document.querySelectorAll(sel)];
+  const set=(id,t)=>{const e=document.getElementById(id);if(e)e.textContent=t};
+  set('m-headers',q('[data-m-h] .ds-header-row').map(h).join(' / ')+' px');
+  set('m-logo',q('[data-m-logo]').map(h).join(', ')+' px');
+  set('m-title',Math.round(parseFloat(getComputedStyle(q('[data-m-title]')[0]).fontSize))+'px');
+  set('m-btns',q('[data-m-btn]').map(h).join(' / '));
+  set('m-inputs',q('[data-m-input]').map(h).join(' / '));
+  set('m-tabs',q('[data-m-tabs]').map(h).join(' / '));
+}
+measureSizes(); addEventListener('resize',measureSizes); document.fonts&&document.fonts.ready.then(measureSizes);
 </script>
 </body>
 </html>

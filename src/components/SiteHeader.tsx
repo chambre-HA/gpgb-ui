@@ -16,7 +16,7 @@ export function SiteHeader({ logoSrc, logoAlt = '大道大商', title, nav, acti
   return (
     <header className="ds-header">
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 ds-btn ds-btn-primary">Skip to content</a>
-      <div className={`${containerClassName} flex items-center justify-between gap-x-4 gap-y-2 py-4`}>
+      <div className={`${containerClassName} ds-header-row flex items-center justify-between gap-x-4 gap-y-2`}>
         <div className="flex min-w-0 items-center gap-3">
           {menuButton && <div className="md:hidden">{menuButton}</div>}
           <Link href={href} aria-label={homeLabel} className="flex min-w-0 items-center gap-4">

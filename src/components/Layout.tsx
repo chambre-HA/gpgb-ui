@@ -22,18 +22,17 @@ export function CenteredPage({ children }: { children: ReactNode }) {
   return <div className="ds-page-centered"><main id="main" className="ds-card">{children}</main></div>
 }
 
-/** Page title row: serif title + description on the left, actions on the right (primary action first on phones). */
-export function PageTitle({ title, description, actions, breadcrumbs }: { title: string; description?: string; actions?: ReactNode; breadcrumbs?: ReactNode }) {
+/** The page head, identical in position and type on every page: serif title (36px, 48px from 640px; `small` = 30/36px for detail pages
+ *  with long titles), optional lede, actions on the right. Sits 40/48px below the header. */
+export function PageTitle({ title, description, actions, breadcrumbs, small }: { title: string; description?: string; actions?: ReactNode; breadcrumbs?: ReactNode; small?: boolean }) {
   return (
-    <div className="mb-9">
-      {breadcrumbs && <div className="mb-3">{breadcrumbs}</div>}
-      <div className="ds-page-title !mb-0">
-        <div className="min-w-0">
-          <h1 className="font-display text-4xl font-medium sm:text-5xl">{title}</h1>
-          {description && <p className="mt-3 max-w-[44em] text-[13px] leading-[1.85] text-ink-soft">{description}</p>}
-        </div>
-        {actions && <div className="flex flex-wrap items-center gap-2">{actions}</div>}
+    <div className="ds-page-head">
+      <div className="min-w-0">
+        {breadcrumbs && <div className="mb-3">{breadcrumbs}</div>}
+        <h1 className={small ? 'ds-title-sm' : 'ds-title'}>{title}</h1>
+        {description && <p className="ds-lede">{description}</p>}
       </div>
+      {actions && <div className="flex flex-wrap items-center gap-2">{actions}</div>}
     </div>
   )
 }

@@ -2,6 +2,11 @@
 
 Versions follow semver while 0.x: **minor** = new components or token changes that may shift appearance, **patch** = fixes. Apps pin with `^0.x.0`.
 
+## 0.4.0
+- **Standard sizes:** header row is a fixed 72px (`ds-header-row`, built into `SiteHeader`) so the logo and page sit at the same height in every app; exact control heights, sm 32 / md 40 / lg 48px for buttons and inputs (`ds-input-lg` added), tabs 40px; page head classes `ds-page-head`, `ds-title` (36/48px), `ds-title-sm`, `ds-lede`; `ds-search` and `<SearchInput>`; `<PageTitle small>`. `ds-page-title` removed (use `ds-page-head`).
+- The browser test suite now measures these sizes in the style guide.
+- Appearance: buttons that were 46px (lg) are now 48px; inputs 39px are 40px; small inputs 34px are 32px; headers that depended on their content are now 72px.
+
 ## 0.3.0
 - **Page width standard:** the 72rem (1152px) frame of draw.gpgb.app, now with responsive gutters (16px, 24px from 640px) so desktop content is 1104px. `ds-container-wide` (80rem), `ds-measure` (42rem reading column inside the frame), `ds-split` / `<SplitLayout>` (content + 22rem side panel), `ds-grid-cards` (auto-fill card grid). `<PageShell wide>`.
 - Docs: Tailwind's `rounded-sm/md/lg/xl` and `shadow-sm/md/lg` follow the system scale (they are defined in `@theme`), and the page-width rules.
