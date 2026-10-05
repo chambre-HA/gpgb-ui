@@ -131,7 +131,7 @@ Code: `labels.zh` / `labels.en` (and `t(lang, key)`) hold the standard strings (
 
 ## Using it in an app
 ```bash
-npm i ../gpgb-ui         # or add "@vibeuncle/gpgb-ui": "file:../gpgb-ui"
+npm install @vibeuncle/gpgb-ui   # pin with ^0.x; Renovate/Dependabot keeps it current
 ```
 ```css
 /* app/globals.css */

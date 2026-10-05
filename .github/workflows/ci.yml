@@ -1,0 +1,17 @@
+name: CI
+on:
+  push: { branches: [main] }
+  pull_request:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npm run check   # typecheck + headless-Chrome browser tests (Chrome is preinstalled on ubuntu-latest)
+      - name: Style guide CSS is up to date
+        run: |
+          npm run styleguide:build
+          git diff --exit-code styleguide/styleguide.css || (echo "styleguide.css is stale: run npm run styleguide:build and commit" && exit 1)

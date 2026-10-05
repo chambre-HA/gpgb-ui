@@ -16,7 +16,8 @@ const CHROME = process.env.CHROME || [
 if (!CHROME) { console.error('Chrome not found. Set CHROME=/path/to/chrome'); process.exit(2) }
 
 function runPage(htmlPath) {
-  const dom = execFileSync(CHROME, ['--headless=new', '--disable-gpu', '--allow-file-access-from-files', '--virtual-time-budget=15000', '--dump-dom', pathToFileURL(htmlPath).href], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'], maxBuffer: 64 * 1024 * 1024 })
+  const sandbox = process.env.CI ? ['--no-sandbox'] : []
+  const dom = execFileSync(CHROME, ['--headless=new', '--disable-gpu', ...sandbox, '--allow-file-access-from-files', '--virtual-time-budget=15000', '--dump-dom', pathToFileURL(htmlPath).href], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'], maxBuffer: 64 * 1024 * 1024 })
   const m = dom.match(/<pre id="o">([\s\S]*?)<\/pre>/)
   return (m ? m[1] : '').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&').trim()
 }

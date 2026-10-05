@@ -1,9 +1,39 @@
 {
   "name": "@vibeuncle/gpgb-ui",
   "version": "0.1.2",
-  "private": true,
-  "description": "大道大商 shared design system: tokens, CSS component layer, React components",
+  "description": "大道大商 shared design system: tokens, CSS components, React components, style guide",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chambre-HA/gpgb-ui.git"
+  },
+  "homepage": "https://github.com/chambre-HA/gpgb-ui#readme",
+  "bugs": {
+    "url": "https://github.com/chambre-HA/gpgb-ui/issues"
+  },
+  "keywords": [
+    "design-system",
+    "tailwind",
+    "react",
+    "nextjs",
+    "大道大商"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "files": [
+    "src",
+    "styles",
+    "assets",
+    "DESIGN.md",
+    "DESIGN_SYSTEM.md",
+    "README.md",
+    "CHANGELOG.md"
+  ],
   "exports": {
     ".": "./src/index.ts",
     "./tokens.css": "./styles/tokens.css",
@@ -16,6 +46,11 @@
     "react": ">=18",
     "tailwindcss": "^4",
     "lucide-react": ">=0.400"
+  },
+  "peerDependenciesMeta": {
+    "lucide-react": {
+      "optional": false
+    }
   },
   "devDependencies": {
     "@types/react": "^19",
@@ -33,14 +68,7 @@
     "styleguide:build": "tailwindcss -i styleguide/input.css -o styleguide/styleguide.css --minify",
     "test": "node test/run.mjs",
     "check": "npm run typecheck && npm test",
-    "pack:to": "npm pack --pack-destination"
-  },
-  "files": [
-    "src",
-    "styles",
-    "assets",
-    "DESIGN.md",
-    "DESIGN_SYSTEM.md",
-    "README.md"
-  ]
+    "prepublishOnly": "npm run check",
+    "release": "npm run check && npm version"
+  }
 }
