@@ -89,7 +89,7 @@ Rules: one flourish per view; everything else is quiet feedback that answers an 
 ## Navigation
 | Piece | React | Notes |
 |---|---|---|
-| Header | `<SiteHeader logoSrc title nav actions menuButton>` | Graphic logo left; `nav` shows from `md`; `menuButton` shows below `md`. Includes a skip link to `#main`. |
+| Header | `<SiteHeader logoSrc title nav actions menuButton containerClassName homeLabel>` | Graphic logo left; `nav` shows from `md`; `menuButton` shows below `md`. Includes a skip link to `#main` (give your `<main>` that id). `containerClassName` sets the content width (default 72rem `ds-container`; narrow apps pass e.g. `mx-auto max-w-2xl px-5`). Put short always-visible links in `actions` instead of `nav`. |
 | Nav links | `<NavLinks items>` / `ds-nav-link` | Pill links; current = accent-soft wash + `aria-current="page"`. |
 | Phone nav | `<MenuButton>` + `<NavDrawer items open onOpenChange>` | Left drawer (`Sheet side="left"`). Closes on link click, Esc, scrim. |
 | Account | `<UserMenu>` / `<SignInButton>` | Avatar + menu: settings, extras, sign out. Signed out: outline 登录 button. |
@@ -142,7 +142,7 @@ npm i ../gpgb-ui         # or add "@vibeuncle/gpgb-ui": "file:../gpgb-ui"
 ```tsx
 import { Button, Card, Modal } from '@vibeuncle/gpgb-ui'
 ```
-Next.js: add `transpilePackages: ['@vibeuncle/gpgb-ui']` to `next.config.ts` (the package ships TS source). `styles.css` already contains `@source '../src'`, so your Tailwind generates the utilities the React components use; no extra setup. Components are client components where they need state (`'use client'` is in the files).
+Next.js: wrap the app once in `<LinkProvider value={Link}>` (`import Link from 'next/link'`) so nav, breadcrumbs, footer and menu links do client-side navigation (default is a plain `<a>`, i.e. full page loads). Add `transpilePackages: ['@vibeuncle/gpgb-ui']` to `next.config.ts` (the package ships TS source). `styles.css` already contains `@source '../src'`, so your Tailwind generates the utilities the React components use; no extra setup. Components are client components where they need state (`'use client'` is in the files).
 
 ## Migration map (when you adopt it)
 | App's old name | Canonical |

@@ -4,6 +4,7 @@ import type { KeyboardEvent, ReactElement, ReactNode } from 'react'
 import { Check } from 'lucide-react'
 import { cn } from '../cn'
 import { useDismiss } from '../hooks'
+import { useLink } from '../link'
 
 type Align = 'start' | 'end'
 
@@ -34,6 +35,7 @@ export type MenuEntry =
 export function Menu({ trigger, items, align = 'start', label }: {
   trigger: ReactElement<Record<string, unknown>>; items: MenuEntry[]; align?: Align; label: string
 }) {
+  const Link = useLink()
   const [open, setOpen] = useState(false)
   const wrap = useRef<HTMLDivElement>(null)
   const list = useRef<HTMLDivElement>(null)
@@ -86,7 +88,7 @@ export function Menu({ trigger, items, align = 'start', label }: {
             </>
             const role = it.checked !== undefined ? 'menuitemradio' : 'menuitem'
             return it.href
-              ? <a key={i} role={role} aria-checked={it.checked} aria-disabled={it.disabled || undefined} href={it.href} className={cls} tabIndex={-1} onClick={() => close()}>{inner}</a>
+              ? <Link key={i} role={role} aria-checked={it.checked} aria-disabled={it.disabled || undefined} href={it.href} className={cls} tabIndex={-1} onClick={() => close()}>{inner}</Link>
               : <button key={i} type="button" role={role} aria-checked={it.checked} aria-disabled={it.disabled || undefined} className={cls} tabIndex={-1}
                   onClick={() => { if (it.disabled) return; it.onSelect?.(); close(true) }}>{inner}</button>
           })}

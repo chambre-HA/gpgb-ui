@@ -1,6 +1,7 @@
 'use client'
 import { ChevronDown, LogIn, LogOut, Settings } from 'lucide-react'
 import { t } from '../copy'
+import { useLink } from '../link'
 import type { Lang } from '../copy'
 import { Menu } from './Popover'
 import type { MenuEntry } from './Popover'
@@ -28,9 +29,10 @@ export function UserMenu({ name, email, avatarSrc, onSettings, settingsHref, onS
 }
 
 export function SignInButton({ onClick, href, lang }: { onClick?: () => void; href?: string; lang?: Lang }) {
+  const Link = useLink()
   const cls = 'ds-btn ds-btn-outline ds-btn-sm'
   return href
-    ? <a className={cls} href={href}><LogIn size={16} aria-hidden />{t(lang, 'signIn')}</a>
+    ? <Link className={cls} href={href}><LogIn size={16} aria-hidden />{t(lang, 'signIn')}</Link>
     : <button type="button" className={cls} onClick={onClick}><LogIn size={16} aria-hidden />{t(lang, 'signIn')}</button>
 }
 

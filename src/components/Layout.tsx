@@ -1,7 +1,10 @@
+'use client'
+
 import type { ReactNode } from 'react'
 import { cn } from '../cn'
 import { t } from '../copy'
 import type { Lang } from '../copy'
+import { useLink } from '../link'
 
 /** Standard page: header, main, footer. Content width via `ds-container`. */
 export function PageShell({ header, children, footer }: { header?: ReactNode; children: ReactNode; footer?: ReactNode }) {
@@ -43,6 +46,7 @@ export function SidebarLayout({ aside, children, wide }: { aside: ReactNode; chi
 export function SiteFooter({ logoSrc, logoAlt = '大道大商', links = [], note, lang }: {
   logoSrc?: string; logoAlt?: string; links?: Array<{ label: string; href: string }>; note?: string; lang?: Lang
 }) {
+  const Link = useLink()
   return (
     <footer className="ds-footer">
       <div className="ds-container flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
@@ -51,7 +55,7 @@ export function SiteFooter({ logoSrc, logoAlt = '大道大商', links = [], note
           {logoSrc && <img src={logoSrc} alt={logoAlt} className="brand-logo h-5 w-auto opacity-80" />}
           <span>{note ?? `© ${new Date().getFullYear()} ${t(lang, 'copyright')}`}</span>
         </div>
-        {links.length > 0 && <nav aria-label="Footer" className="flex flex-wrap gap-x-5 gap-y-1">{links.map(l => <a key={l.href} href={l.href}>{l.label}</a>)}</nav>}
+        {links.length > 0 && <nav aria-label="Footer" className="flex flex-wrap gap-x-5 gap-y-1">{links.map(l => <Link key={l.href} href={l.href}>{l.label}</Link>)}</nav>}
       </div>
     </footer>
   )

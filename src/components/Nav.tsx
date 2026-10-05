@@ -5,15 +5,17 @@ import { cn } from '../cn'
 import { t } from '../copy'
 import type { Lang } from '../copy'
 import { Sheet } from './Sheet'
+import { useLink } from '../link'
 
 export interface NavItem { label: string; href: string; icon?: ReactNode; current?: boolean }
 
 /** Header navigation: pill links, current page = accent-soft wash with aria-current="page". Hide on phones; use NavDrawer there. */
 export function NavLinks({ items, lang, className }: { items: NavItem[]; lang?: Lang; className?: string }) {
+  const Link = useLink()
   return (
     <nav aria-label={t(lang, 'mainNav')} className={cn('flex items-center gap-1', className)}>
       {items.map(i => (
-        <a key={i.href} href={i.href} className="ds-nav-link" aria-current={i.current ? 'page' : undefined}>{i.icon}{i.label}</a>
+        <Link key={i.href} href={i.href} className="ds-nav-link" aria-current={i.current ? 'page' : undefined}>{i.icon}{i.label}</Link>
       ))}
     </nav>
   )
@@ -23,11 +25,12 @@ export function NavLinks({ items, lang, className }: { items: NavItem[]; lang?: 
 export function NavDrawer({ items, open, onOpenChange, title, footer, lang }: {
   items: NavItem[]; open: boolean; onOpenChange: (v: boolean) => void; title?: string; footer?: ReactNode; lang?: Lang
 }) {
+  const Link = useLink()
   return (
     <Sheet open={open} onClose={() => onOpenChange(false)} side="left" title={title ?? t(lang, 'menu')} lang={lang}>
       <nav aria-label={t(lang, 'mainNav')} className="flex flex-col gap-1">
         {items.map(i => (
-          <a key={i.href} href={i.href} className="ds-drawer-link" aria-current={i.current ? 'page' : undefined} onClick={() => onOpenChange(false)}>{i.icon}{i.label}</a>
+          <Link key={i.href} href={i.href} className="ds-drawer-link" aria-current={i.current ? 'page' : undefined} onClick={() => onOpenChange(false)}>{i.icon}{i.label}</Link>
         ))}
       </nav>
       {footer && <div className="mt-6 border-t border-border-soft pt-4">{footer}</div>}
@@ -45,6 +48,7 @@ export function MenuButton({ onClick, expanded, lang }: { onClick: () => void; e
 
 /** Where you are. The last item is the current page and is not a link. */
 export function Breadcrumbs({ items, lang }: { items: Array<{ label: string; href?: string }>; lang?: Lang }) {
+  const Link = useLink()
   return (
     <nav aria-label={t(lang, 'breadcrumb')}>
       <ol className="ds-crumbs">
@@ -52,7 +56,7 @@ export function Breadcrumbs({ items, lang }: { items: Array<{ label: string; hre
           const last = i === items.length - 1
           return (
             <li key={i}>
-              {last || !c.href ? <span aria-current={last ? 'page' : undefined}>{c.label}</span> : <a href={c.href} className="ds-link">{c.label}</a>}
+              {last || !c.href ? <span aria-current={last ? 'page' : undefined}>{c.label}</span> : <Link href={c.href} className="ds-link">{c.label}</Link>}
               {!last && <ChevronRight size={14} aria-hidden className="text-ink-faint" />}
             </li>
           )

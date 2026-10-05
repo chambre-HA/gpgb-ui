@@ -23,3 +23,9 @@ function App() {
   )
 }
 createRoot(document.getElementById('root')!).render(<App />)
+
+// LinkProvider: NavLinks must render through the app's link component.
+import { NavLinks, LinkProvider } from '../src/index'
+const Custom = (p: React.AnchorHTMLAttributes<HTMLAnchorElement>) => <a data-custom-link="1" {...p} />
+const host = document.createElement('div'); host.id = 'linkhost'; document.body.appendChild(host)
+createRoot(host).render(<LinkProvider value={Custom}><NavLinks items={[{ label: 'x', href: '/x', current: true }]} /></LinkProvider>)

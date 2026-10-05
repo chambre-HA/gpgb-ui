@@ -52,6 +52,7 @@ const $$ = s => [...document.querySelectorAll(s)]
     $('#pbtn').click(); await wait(50); ok('popover opens', !!$('.ds-popover-body'))
     document.body.dispatchEvent(new MouseEvent('mousedown', { bubbles: true })); await wait(50)
     ok('popover closes on outside click', !$('.ds-popover-body'))
+    ok('LinkProvider: NavLinks use the app link component + aria-current', !!document.querySelector('#linkhost a[data-custom-link][aria-current=page]'))
     ok('tooltip wired via aria-describedby', $('#tbtn').getAttribute('aria-describedby') === $('[role=tooltip]').id)
   } catch (e) { R.push('FAIL error: ' + e.message) }
   document.getElementById('o').textContent = R.join('\n'); document.title = 'done'
