@@ -2,6 +2,9 @@
 
 Versions follow semver while 0.x: **minor** = new components or token changes that may shift appearance, **patch** = fixes. Apps pin with `^0.x.0`.
 
+## 0.2.1
+- Release pipeline only: publishes through npm trusted publishing (no token). No code or appearance changes.
+
 ## 0.2.0 — first public release
 - Tokens: paper/ink/accent palette with dark mode, `accent-text`, `border-strong`, `focus`, `on-accent`/`on-danger`; radii, shadows, motion tokens.
 - `ds-*` CSS components and a React package: buttons, forms, cards, badges, tabs, modal, confirm dialog, sheet, menu, popover, tooltip, toast, stamp, skeleton.

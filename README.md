@@ -17,7 +17,7 @@ Then follow "Using it in an app" in [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md) (CSS 
 1. Change tokens/components; update the style guide and docs in the same commit; add a `CHANGELOG.md` entry.
 2. `npm run check` (typecheck + browser tests; also runs in CI).
 3. `npm version minor` (or `patch`), then `git push --follow-tags`.
-4. The tag triggers `.github/workflows/release.yml`, which publishes to npm when the repo secret `NPM_TOKEN` is set. Or publish by hand: `npm publish`.
+4. The tag triggers `.github/workflows/release.yml`, which publishes to npm through trusted publishing (OIDC: npm trusts this repo and workflow, so there is no token to manage).
 5. Apps pick it up via Renovate/Dependabot PRs (or `npm update @vibeuncle/gpgb-ui`).
 
 Licence: proprietary (`UNLICENSED`): published for 大道大商 / VibeUncle apps, no reuse grant.

@@ -1,19 +1,18 @@
 name: Release
 # Pushing a tag like v0.3.0 (npm version minor && git push --follow-tags) publishes to npm.
-# Needs the repo secret NPM_TOKEN (an npm "Automation" token). Without it this workflow does nothing.
+# Publishing uses npm "trusted publishing" (OIDC): npmjs.com trusts this repo + workflow file, so NO token or secret is involved.
+# Requirements: a trusted publisher configured on the package (owner chambre-HA, repo gpgb-ui, workflow release.yml,
+# "Allow npm publish" ticked), npm >= 11.5.1 (Node 24), and the id-token permission below.
 on:
   push: { tags: ['v*'] }
 permissions: { contents: read, id-token: write }
 jobs:
   publish:
     runs-on: ubuntu-latest
-    env: { NPM_TOKEN: '${{ secrets.NPM_TOKEN }}' }
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: 22, registry-url: 'https://registry.npmjs.org', cache: npm }
+        with: { node-version: 24, registry-url: 'https://registry.npmjs.org', cache: npm }
+      - run: npm --version
       - run: npm ci
-      - name: Publish
-        if: ${{ env.NPM_TOKEN != '' }}
-        run: npm publish --provenance --access public
-        env: { NODE_AUTH_TOKEN: '${{ secrets.NPM_TOKEN }}' }
+      - run: npm publish --access public   # provenance is attached automatically with trusted publishing
