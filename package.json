@@ -32,6 +32,15 @@
     "typecheck": "tsc --noEmit",
     "styleguide:build": "tailwindcss -i styleguide/input.css -o styleguide/styleguide.css --minify",
     "test": "node test/run.mjs",
-    "check": "npm run typecheck && npm test"
-  }
+    "check": "npm run typecheck && npm test",
+    "pack:to": "npm pack --pack-destination"
+  },
+  "files": [
+    "src",
+    "styles",
+    "assets",
+    "DESIGN.md",
+    "DESIGN_SYSTEM.md",
+    "README.md"
+  ]
 }

@@ -20,7 +20,7 @@
   --color-accent: #ff7f20;
   --color-accent-hover: #d96c1b;
   --color-accent-soft: #ffebdb;
-  --color-accent-text: #b4540f;   /* accent used AS TEXT/icon on paper/surface (4.6:1). Fills use --color-accent */
+  --color-accent-text: #a84a0a;   /* accent used AS TEXT/icon: 4.8:1+ on paper, surface, paper-deep and accent-soft. Fills use --color-accent */
   --color-focus: #d96c1b;         /* focus ring (3:1+ against paper and surface) */
   /* Feedback */
   --color-danger: #c62828;
@@ -73,7 +73,7 @@
     --color-ink-faint: #948c73;
     --color-border-soft: #3a352c;
     --color-border-strong: #7d7463;
-    --color-accent-text: #ff994d;
+    --color-accent-text: #ffb783;
     --color-focus: #ff994d;
     --color-on-danger: #221f1a;
     --color-on-accent: #221f1a;
@@ -99,7 +99,7 @@
   --color-ink-faint: #948c73;
   --color-border-soft: #3a352c;
   --color-border-strong: #7d7463;
-  --color-accent-text: #ff994d;
+  --color-accent-text: #ffb783;
   --color-focus: #ff994d;
   --color-on-danger: #221f1a;
   --color-on-accent: #221f1a;

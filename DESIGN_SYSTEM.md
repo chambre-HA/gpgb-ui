@@ -24,7 +24,7 @@ Reference app: **greatpath-draw**. Where apps disagreed, greatpath-draw won; gap
 | `border-soft` | #e8e0d1 | #3a352c | Decorative dividers, card edges |
 | `border-strong` | #8f8676 | #7d7463 | Form-control edges, switch track (3:1+) |
 | `accent` / `-hover` / `-soft` | #ff7f20 / #d96c1b / #ffebdb | #ff994d / #ffac6e / #664921 | Brand fill, hover, tinted bg |
-| `accent-text` | #b4540f | #ff994d | Orange used as text/icon (4.6:1; raw accent is 2.3:1 on paper) |
+| `accent-text` | #a84a0a | #ffb783 | Orange used as text/icon (4.8:1+ on paper, surface, paper-deep and accent-soft; raw accent is 2.3:1 on paper) |
 | `focus` | #d96c1b | #ff994d | Focus ring (3:1+) |
 | `danger` | #c62828 | #f87171 | Errors, destructive |
 | `warn` | #8a5a20 | #e0b06a | Warnings |
