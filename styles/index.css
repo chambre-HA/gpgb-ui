@@ -1,0 +1,5 @@
+/* One import for an app:  @import '@vibeuncle/gpgb-ui/styles.css';  (after @import 'tailwindcss') */
+/* Lets the app's Tailwind generate the utilities the React components in ../src use. */
+@source '../src';
+@import './tokens.css';
+@import './components.css';

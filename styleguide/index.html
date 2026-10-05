@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>大道大商 Style Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;700&display=swap">
+<link rel="stylesheet" href="./styleguide.css">
+<style>
+  .sg-swatch { height: 56px; border-radius: var(--radius-md); border: 1px solid var(--color-border-soft); }
+  .sg-code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; color: var(--color-ink-soft); }
+  .sg-section { scroll-margin-top: 72px; padding-block: 40px; border-top: 1px solid var(--color-border-soft); }
+  .sg-nav a { display:block; width: fit-content; padding: 4px 0; font-size: 13px; }
+  .sg-demo { padding: 24px; border: 1px dashed var(--color-border-soft); border-radius: var(--radius-lg); background: var(--color-paper); }
+  .sg-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+</style>
+</head>
+<body>
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 ds-btn ds-btn-primary">Skip to content</a>
+
+<header class="ds-header sticky top-0 z-40 bg-paper/90 backdrop-blur">
+  <div class="ds-container flex items-center justify-between gap-4 py-3">
+    <div class="flex items-baseline gap-3"><span class="font-display text-lg">大道大商 Style Guide</span><span class="ds-hint">@vibeuncle/gpgb-ui v0.1</span></div>
+    <div class="ds-tabs" role="group" aria-label="Theme" id="theme">
+      <button class="ds-tab" data-t="auto" aria-pressed="true">Auto</button>
+      <button class="ds-tab" data-t="light" aria-pressed="false">Light</button>
+      <button class="ds-tab" data-t="dark" aria-pressed="false">Dark</button>
+    </div>
+  </div>
+</header>
+
+<nav aria-label="Sections" class="ds-container overflow-x-auto py-2 lg:hidden"><div class="flex gap-4 whitespace-nowrap text-[13px]">
+  <a class="ds-link" href="#colour">Colour</a><a class="ds-link" href="#contrast">Contrast</a><a class="ds-link" href="#type">Type</a><a class="ds-link" href="#shape">Shape</a><a class="ds-link" href="#motion">Motion</a><a class="ds-link" href="#buttons">Buttons</a><a class="ds-link" href="#forms">Forms</a><a class="ds-link" href="#surfaces">Cards</a><a class="ds-link" href="#tabs">Tabs</a><a class="ds-link" href="#overlays">Overlays</a><a class="ds-link" href="#feedback">Feedback</a><a class="ds-link" href="#table">Table</a><a class="ds-link" href="#header">Header</a><a class="ds-link" href="#navigation">Navigation</a><a class="ds-link" href="#menus">Menus &amp; tips</a><a class="ds-link" href="#layouts">Layouts</a><a class="ds-link" href="#voice">Voice</a>
+</div></nav>
+<div class="ds-container flex gap-10 py-8">
+<nav class="sg-nav hidden w-40 shrink-0 lg:block"><div class="sticky top-20">
+  <p class="ds-caption mb-2">Foundations</p>
+  <a class="ds-link" href="#colour">Colour</a><a class="ds-link" href="#contrast">Contrast</a><a class="ds-link" href="#type">Typography</a><a class="ds-link" href="#shape">Shape &amp; elevation</a><a class="ds-link" href="#motion">Motion</a>
+  <p class="ds-caption mb-2 mt-5">Components</p>
+  <a class="ds-link" href="#buttons">Buttons</a><a class="ds-link" href="#forms">Forms</a><a class="ds-link" href="#surfaces">Cards &amp; badges</a><a class="ds-link" href="#tabs">Tabs</a><a class="ds-link" href="#overlays">Modal &amp; toast</a><a class="ds-link" href="#feedback">Feedback</a><a class="ds-link" href="#table">Table</a><a class="ds-link" href="#header">Header</a><a class="ds-link" href="#navigation">Navigation</a><a class="ds-link" href="#menus">Menus &amp; tips</a><a class="ds-link" href="#layouts">Layouts</a><a class="ds-link" href="#voice">Voice</a>
+</div></nav>
+
+<main id="main" class="min-w-0 flex-1">
+  <h1 class="font-display text-4xl sm:text-5xl">Design tokens &amp; components</h1>
+  <p class="font-answer mt-4 max-w-2xl text-ink-soft">Warm paper, warm ink, one orange. Click any swatch to copy its token. Use the theme switch to check both modes.</p>
+
+  <!-- COLOUR -->
+  <section id="colour" class="sg-section">
+    <h2 class="font-display text-2xl mb-1">Colour</h2><p class="ds-hint mb-5">Tailwind utilities: <span class="sg-code">bg-paper text-ink-soft border-border-soft</span></p>
+    <div id="swatches" class="sg-grid"></div>
+  </section>
+
+  <!-- CONTRAST -->
+  <section id="contrast" class="sg-section">
+    <h2 class="font-display text-2xl mb-1">Contrast</h2>
+    <p class="ds-hint mb-5">Measured WCAG ratios. Text needs 4.5:1 (large 3:1); controls and focus rings need 3:1.</p>
+    <div class="ds-card overflow-x-auto"><table class="ds-table"><thead><tr><th>Pairing</th><th>Light</th><th>Dark</th><th>Use</th></tr></thead><tbody>
+      <tr><td>ink on paper</td><td>15.2</td><td>14.7</td><td class="text-ink-soft">Body text</td></tr>
+      <tr><td>ink-soft on paper</td><td>5.4</td><td>7.7</td><td class="text-ink-soft">Secondary text</td></tr>
+      <tr><td>ink-faint on paper / surface</td><td>4.7 / 5.1</td><td>5.2 / 4.7</td><td class="text-ink-soft">Hints. Not on paper-deep (4.2 light); use ink-soft there</td></tr>
+      <tr><td>on-accent on accent</td><td>2.5 (white)</td><td>7.8 (ink)</td><td class="text-ink-soft">Primary button, badge, selected tab. Light keeps white (reference look): below AA, so labels stay 14px+ medium and never carry meaning alone. Dark uses ink (white would be 2.1)</td></tr>
+      <tr><td>on-accent on accent-hover</td><td>3.4</td><td>8.9</td><td class="text-ink-soft">Button hover</td></tr>
+      <tr><td>accent-text on paper</td><td>4.6</td><td>8.2</td><td class="text-ink-soft">Orange used as text or icon. Raw accent is 2.3 on paper</td></tr>
+      <tr><td>danger on surface</td><td>5.6</td><td>5.6</td><td class="text-ink-soft">Error text</td></tr>
+      <tr><td>on-danger on danger</td><td>5.6</td><td>5.9</td><td class="text-ink-soft">Danger button</td></tr>
+      <tr><td>border-strong on surface</td><td>3.6</td><td>3.4</td><td class="text-ink-soft">Input edge, switch track</td></tr>
+      <tr><td>focus on paper</td><td>3.2</td><td>8.2</td><td class="text-ink-soft">Focus ring</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <!-- TYPE -->
+  <section id="type" class="sg-section">
+    <h2 class="font-display text-2xl mb-5">Typography</h2>
+    <div class="space-y-6">
+      <div><p class="ds-hint mb-1">Display · font-display · text-4xl/5xl</p><p class="font-display text-4xl sm:text-5xl">一纸道笺 The quick brown fox</p></div>
+      <div><p class="ds-hint mb-1">Section title · font-display · text-xl</p><p class="font-display text-xl">团队专属的海报制作工具</p></div>
+      <div><p class="ds-hint mb-1">Body · Noto Sans SC 14px / 1.6</p><p class="text-sm">统一版式、品牌字体与配色规范，确保每一张物料风格一致。Consistent layouts, brand fonts and colours on every piece.</p></div>
+      <div><p class="ds-hint mb-1">Secondary · text-ink-soft</p><p class="text-sm text-ink-soft">更新于 3 分钟前 · Updated 3 minutes ago</p></div>
+      <div><p class="ds-hint mb-1">Hint · ds-hint</p><p class="ds-hint">仅管理员可见 Admin only</p></div>
+      <div><p class="ds-hint mb-1">Reading · font-answer · 16/17px, lh 1.85</p><p class="font-answer max-w-xl">长文阅读使用无衬线体，因为衬线的细线在手机小屏上容易断裂。行高宽松，中文严格断行，长链接不会撑破版面。</p></div>
+      <div><p class="ds-hint mb-1">Editorial · font-editorial</p><p class="font-editorial max-w-xl text-lg">“大道至简，大商至诚。”</p></div>
+      <div><p class="ds-hint mb-1">Caption · ds-caption (short labels only)</p><p class="ds-caption">Section label</p></div>
+    </div>
+  </section>
+
+  <!-- SHAPE -->
+  <section id="shape" class="sg-section">
+    <h2 class="font-display text-2xl mb-5">Shape &amp; elevation</h2>
+    <p class="ds-caption mb-3">Radii</p>
+    <div class="sg-grid mb-8">
+      <div><div class="ds-card h-16" style="border-radius:var(--radius-sm)"></div><p class="sg-code mt-2">sm · 6 · tab items</p></div>
+      <div><div class="ds-card h-16" style="border-radius:var(--radius-md)"></div><p class="sg-code mt-2">md · 8 · inputs</p></div>
+      <div><div class="ds-card h-16" style="border-radius:var(--radius-lg)"></div><p class="sg-code mt-2">lg · 12 · cards</p></div>
+      <div><div class="ds-card h-16" style="border-radius:var(--radius-xl)"></div><p class="sg-code mt-2">xl · 16 · modals</p></div>
+      <div><div class="ds-card h-16" style="border-radius:var(--radius-pill)"></div><p class="sg-code mt-2">pill · buttons, badges</p></div>
+    </div>
+    <p class="ds-caption mb-3">Shadows</p>
+    <div class="sg-grid">
+      <div><div class="h-16 rounded-lg bg-surface" style="box-shadow:var(--shadow-sm)"></div><p class="sg-code mt-2">sm · rest</p></div>
+      <div><div class="h-16 rounded-lg bg-surface" style="box-shadow:var(--shadow-md)"></div><p class="sg-code mt-2">md · hover</p></div>
+      <div><div class="h-16 rounded-lg bg-surface" style="box-shadow:var(--shadow-lg)"></div><p class="sg-code mt-2">lg · overlay</p></div>
+    </div>
+  </section>
+
+  <!-- MOTION -->
+  <section id="motion" class="sg-section">
+    <h2 class="font-display text-2xl mb-2">Motion</h2>
+    <p class="text-sm text-ink-soft mb-6 max-w-2xl">Calm, physical and short. Things settle into place like paper on a board; the one flourish is the seal stamp. Fast 150ms (hover, press), base 200ms (modal, slide), slow 350ms (list entry), stamp 560ms. Entrances ease out; the switch thumb settles with a gentle ease and the stamp overshoots once in its own keyframes. Reduced-motion removes all of it.</p>
+
+    <div class="space-y-8">
+      <div>
+        <div class="mb-3 flex items-center justify-between"><p class="text-sm font-medium">Entrances</p><button class="ds-btn ds-btn-outline ds-btn-sm" data-replay="m1">Replay</button></div>
+        <div class="sg-demo flex flex-wrap gap-4" data-demo="m1">
+          <div class="ds-card animate-modal-in px-4 py-3 text-sm">modal-in</div>
+          <div class="ds-card animate-entry-in px-4 py-3 text-sm">entry-in</div>
+          <div class="ds-card animate-slide-next px-4 py-3 text-sm">slide-next</div>
+          <div class="ds-card animate-backdrop-in px-4 py-3 text-sm">backdrop-in</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="mb-3 flex items-center justify-between"><p class="text-sm font-medium">Stagger <span class="sg-code">.ds-stagger</span></p><button class="ds-btn ds-btn-outline ds-btn-sm" data-replay="m2">Replay</button></div>
+        <div class="sg-demo" data-demo="m2"><ul class="ds-stagger space-y-2">
+          <li class="ds-card px-4 py-3 text-sm">中秋海报 <span class="ds-hint">· 今天</span></li>
+          <li class="ds-card px-4 py-3 text-sm">活动报名 <span class="ds-hint">· 昨天</span></li>
+          <li class="ds-card px-4 py-3 text-sm">义工招募 <span class="ds-hint">· 3 天前</span></li>
+          <li class="ds-card px-4 py-3 text-sm">月会通知 <span class="ds-hint">· 上周</span></li>
+        </ul></div>
+        <p class="ds-hint mt-2">45ms between items, capped at 12. For lists, galleries and dashboards on first load.</p>
+      </div>
+
+      <div>
+        <div class="mb-3 flex items-center justify-between"><p class="text-sm font-medium">Seal stamp <span class="sg-code">.ds-stamp</span> · the one authored moment</p><button class="ds-btn ds-btn-outline ds-btn-sm" data-replay="m3">Replay</button></div>
+        <div class="sg-demo flex items-center gap-6" data-demo="m3">
+          <span class="ds-stamp" role="img" aria-label="完成"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <div><p class="font-display text-lg">已发布</p><p class="ds-hint">Use once per view, on a meaningful success: published, saved, signed up.</p></div>
+        </div>
+      </div>
+
+      <div>
+        <p class="mb-3 text-sm font-medium">Micro-interactions <span class="ds-hint">· hover, press and toggle these</span></p>
+        <div class="sg-demo grid gap-6 sm:grid-cols-2">
+          <div class="ds-card ds-card-interactive cursor-pointer p-4"><p class="font-display">Card lift</p><p class="mt-1 text-sm text-ink-soft">Rises 2px with a deeper shadow; settles on press.</p></div>
+          <div class="flex flex-col justify-center gap-3 text-sm">
+            <p><a href="#motion" class="ds-link">Link underline draws in</a> from the left.</p>
+            <div class="flex items-center gap-3"><button class="ds-switch" role="switch" aria-checked="false" aria-label="Spring switch" id="sw2"></button><span>Switch thumb settles with a small overshoot</span></div>
+            <div><button class="ds-btn ds-btn-primary ds-btn-sm">Press me</button> <span class="ds-hint ml-2">scales to .97</span></div>
+          </div>
+          <div class="flex items-center gap-4"><div class="ds-card w-28 overflow-hidden"><div class="ds-skeleton h-16" style="border-radius:0"></div><div class="space-y-2 p-3"><div class="ds-skeleton h-3 w-2/3"></div><div class="ds-skeleton h-2.5 w-1/3"></div></div></div><p class="ds-hint">Skeleton: a soft sweep, not a blink.</p></div>
+          <div class="flex items-center gap-4"><div class="ds-reveal ds-card px-4 py-3 text-sm">Scroll reveal <span class="sg-code">.ds-reveal</span></div><p class="ds-hint">Rises as it scrolls into view (no JS). Use for long pages.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-card mt-8 p-5"><p class="font-display text-lg">Rules</p><ul class="mt-2 list-disc space-y-1 pl-5 text-sm text-ink-soft">
+      <li>One flourish per view. Everything else is quiet feedback that answers an action.</li>
+      <li>Move 10px at most, except the stamp. Ease out; never ease in on entrances.</li>
+      <li>Animate transform, opacity and shadow only; never layout.</li>
+      <li>Stagger only on first load. Never re-run entrances on content people are reading.</li>
+      <li>Nothing loops except spinner and skeleton. Reduced-motion removes all of it.</li>
+    </ul></div>
+  </section>
+
+  <!-- BUTTONS -->
+  <section id="buttons" class="sg-section">
+    <h2 class="font-display text-2xl mb-5">Buttons</h2>
+    <div class="sg-demo space-y-5">
+      <div class="flex flex-wrap items-center gap-3">
+        <button class="ds-btn ds-btn-primary">Primary 主要</button>
+        <button class="ds-btn ds-btn-outline">Outline 次要</button>
+        <button class="ds-btn ds-btn-ghost">Ghost 工具栏</button>
+        <button class="ds-btn ds-btn-danger">Danger 删除</button>
+        <button class="ds-btn ds-btn-primary" disabled>Disabled</button>
+        <button class="ds-btn ds-btn-primary" aria-busy="true">Saving 保存中</button>
+        <button class="ds-btn ds-btn-outline" aria-busy="true">Loading</button>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <button class="ds-btn ds-btn-primary ds-btn-sm">Small</button>
+        <button class="ds-btn ds-btn-primary">Medium</button>
+        <button class="ds-btn ds-btn-primary ds-btn-lg">Large</button>
+        <button class="ds-btn ds-btn-outline ds-btn-icon" aria-label="Add"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+      </div>
+    </div>
+    <p class="ds-hint mt-3">One primary per view. Dialog footers: outline cancel, then primary confirm. Icon-only needs aria-label.</p>
+  </section>
+
+  <!-- FORMS -->
+  <section id="forms" class="sg-section">
+    <h2 class="font-display text-2xl mb-5">Forms</h2>
+    <div class="sg-demo grid gap-4 sm:grid-cols-2">
+      <div><label class="ds-label" for="f1">Name 名称</label><input id="f1" class="ds-input" placeholder="Placeholder"><p class="ds-hint mt-1.5">Hint text</p></div>
+      <div><label class="ds-label" for="f2">Small</label><input id="f2" class="ds-input ds-input-sm" value="Filled value"></div>
+      <div><label class="ds-label" for="f3">Error</label><input id="f3" class="ds-input" aria-invalid="true" value="bad@"><p class="ds-error" role="alert">请输入有效的邮箱</p></div>
+      <div><label class="ds-label" for="f4">Disabled</label><input id="f4" class="ds-input" disabled value="Locked"></div>
+      <div><label class="ds-label" for="f5">Select</label><select id="f5" class="ds-input"><option>3:4 海报</option><option>1:1 方形</option></select></div>
+      <div class="flex items-center gap-3 pt-6"><button class="ds-switch" role="switch" aria-checked="true" aria-label="Notifications" id="sw"></button><span class="text-sm">Notifications 通知</span></div>
+      <div class="flex flex-wrap items-center gap-5 sm:col-span-2"><label class="flex items-center gap-2 text-sm"><input type="checkbox" class="ds-check" checked> Checkbox 选项</label><label class="flex items-center gap-2 text-sm"><input type="radio" name="r" class="ds-check" checked> Radio A</label><label class="flex items-center gap-2 text-sm"><input type="radio" name="r" class="ds-check"> Radio B</label></div>
+      <div class="sm:col-span-2"><label class="ds-label" for="f6">Textarea</label><textarea id="f6" class="ds-input" placeholder="Describe the poster…"></textarea></div>
+    </div>
+  </section>
+
+  <!-- SURFACES -->
+  <section id="surfaces" class="sg-section">
+    <h2 class="font-display text-2xl mb-5">Cards &amp; badges</h2>
+    <div class="grid gap-4 sm:grid-cols-3">
+      <div class="ds-card p-5"><p class="font-display text-lg">Card</p><p class="mt-1 text-sm text-ink-soft">Surface, hairline border, shadow-sm.</p></div>
+      <div class="ds-card ds-card-interactive cursor-pointer p-5"><p class="font-display text-lg">Interactive</p><p class="mt-1 text-sm text-ink-soft">Hover: accent border + shadow-md.</p></div>
+      <div class="ds-panel p-5"><p class="font-display text-lg">Panel</p><p class="mt-1 text-sm text-ink-soft">paper-deep, recessed.</p></div>
+    </div>
+    <div class="sg-demo mt-6 flex flex-wrap items-center gap-2">
+      <span class="ds-badge ds-badge-accent">Accent</span><span class="ds-badge ds-badge-ink">Ink</span><span class="ds-badge ds-badge-tint">Tint</span><span class="ds-badge ds-badge-outline">Outline</span><span class="ds-badge ds-badge-danger">Danger</span>
+      <span class="ds-badge ds-badge-accent ds-badge-sm">New</span><span class="ds-badge ds-badge-outline ds-badge-sm">Draft</span>
+    </div>
+  </section>
+
+  <!-- TABS -->
+  <section id="tabs" class="sg-section">
+    <h2 class="font-display text-2xl mb-5">Tabs</h2>
+    <div class="ds-tabs demo-tabs" role="tablist" aria-label="Filter">
+      <button class="ds-tab" role="tab" aria-selected="true">全部 All</button><button class="ds-tab" role="tab" aria-selected="false">3:4</button><button class="ds-tab" role="tab" aria-selected="false">1:1</button><button class="ds-tab" role="tab" aria-selected="false">9:16</button>
+    </div>
+  </section>
+
+  <!-- OVERLAYS -->
+  <section id="overlays" class="sg-section">
+    <h2 class="font-display text-2xl mb-5">Modal &amp; toast</h2>
+    <div class="flex flex-wrap gap-3"><button class="ds-btn ds-btn-outline" id="open-modal">Open modal</button><button class="ds-btn ds-btn-outline" id="open-toast">Show toast</button><button class="ds-btn ds-btn-outline" id="open-toast-err">Show error toast</button></div>
+    <p class="ds-hint mt-3">Modal: Esc / backdrop closes, scroll locked, aria-labelledby.</p>
+  </section>
+
+  <!-- FEEDBACK -->
+  <section id="feedback" class="sg-section">
+    <h2 class="font-display text-2xl mb-5">Feedback</h2>
+    <div class="space-y-3">
+      <div class="ds-alert" role="status">已保存到工作区。Saved to workspace.</div>
+      <div class="ds-alert ds-alert-warn" role="status">此海报将在 7 天后过期。</div>
+      <div class="ds-alert ds-alert-danger" role="alert">上传失败，请重试。Upload failed.</div>
+    </div>
+    <div class="ds-card mt-6"><div class="ds-empty"><p class="font-display text-lg text-ink">还没有海报</p><p class="ds-hint mt-2">从模板开始，或上传背景图。</p><div class="mt-5"><button class="ds-btn ds-btn-primary">新建海报</button></div></div></div>
+    <div class="mt-6 flex items-center gap-8">
+      <div class="ds-card w-44 overflow-hidden"><div class="ds-skeleton aspect-[3/4]" style="border-radius:0"></div><div class="space-y-2 p-3"><div class="ds-skeleton h-3.5 w-2/3"></div><div class="ds-skeleton h-2.5 w-1/3"></div></div></div>
+      <div class="ds-spinner" role="status" aria-label="Loading"></div>
+    </div>
+  </section>
+
+  <!-- TABLE -->
+  <section id="table" class="sg-section">
+    <h2 class="font-display text-2xl mb-5">Table</h2>
+    <div class="ds-card overflow-x-auto"><table class="ds-table"><thead><tr><th>名称</th><th>比例</th><th>状态</th><th>更新</th></tr></thead><tbody>
+      <tr><td>中秋海报</td><td>3:4</td><td><span class="ds-badge ds-badge-sm ds-badge-accent">已发布</span></td><td class="text-ink-soft">今天</td></tr>
+      <tr><td>活动报名</td><td>1:1</td><td><span class="ds-badge ds-badge-sm ds-badge-outline">草稿</span></td><td class="text-ink-soft">昨天</td></tr>
+      <tr><td>义工招募</td><td>9:16</td><td><span class="ds-badge ds-badge-sm ds-badge-outline">草稿</span></td><td class="text-ink-soft">3 天前</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <!-- HEADER -->
+  <section id="header" class="sg-section">
+    <h2 class="font-display text-2xl mb-5">Header</h2>
+    <div class="ds-card overflow-hidden"><div class="ds-header"><div class="flex flex-wrap items-center justify-between gap-4 px-6 py-4">
+      <div class="flex items-center gap-4"><img src="./daoshang-horizontal-mark-dark.png" alt="大道大商" class="brand-logo h-6 w-auto shrink-0"><span class="ds-brand-divider" aria-hidden="true"></span><span class="font-display text-lg">一纸道笺</span></div>
+      <div class="flex items-center gap-2"><button class="ds-btn ds-btn-ghost ds-btn-sm">帮助</button><button class="ds-btn ds-btn-primary ds-btn-sm">新建</button></div>
+    </div></div><div class="p-6 text-sm text-ink-soft">Page content. The logo is the graphic mark (<span class="sg-code">assets/logo/daoshang-horizontal-mark-dark.png</span>, <span class="sg-code">brand-logo h-6</span>); it flips to light in dark mode.</div></div>
+  </section>
+
+  <!-- NAVIGATION -->
+  <section id="navigation" class="sg-section">
+    <h2 class="font-display text-2xl mb-2">Navigation</h2>
+    <p class="text-sm text-ink-soft mb-6 max-w-2xl">Header nav is pill links; the current page gets an accent-soft wash and <span class="sg-code">aria-current="page"</span>. Below <span class="sg-code">md</span> the links move into a left drawer behind a menu button. Account and workspace controls are menus.</p>
+
+    <p class="mb-2 text-sm font-medium">Header with nav, workspace, language and account</p>
+    <div class="ds-card"><div class="ds-header" style="border:0"><div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-3 px-5 py-4">
+      <div class="flex items-center gap-3">
+        <button class="ds-btn ds-btn-ghost ds-btn-icon md:hidden" data-open-sheet="drawer" aria-label="打开菜单" aria-haspopup="dialog"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+        <img src="./daoshang-horizontal-mark-dark.png" alt="大道大商" class="brand-logo h-6 w-auto">
+        <span class="ds-brand-divider hidden sm:block" aria-hidden="true"></span><span class="font-display hidden text-lg sm:inline">一纸道笺</span>
+      </div>
+      <nav aria-label="主导航" class="hidden items-center gap-1 md:flex"><a class="ds-nav-link" href="#navigation" aria-current="page">海报</a><a class="ds-nav-link" href="#navigation">模板</a><a class="ds-nav-link" href="#navigation">素材库</a></nav>
+      <div class="flex items-center gap-2">
+        <div class="ds-popover-wrap" data-menu><button class="ds-btn ds-btn-outline ds-btn-sm" aria-haspopup="menu" aria-expanded="false" aria-label="工作区: 道商义工团"><span class="max-w-[8rem] truncate">道商义工团</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="ds-popover ds-popover-end" role="menu" aria-label="工作区" hidden>
+            <div class="ds-menu-label">切换工作区</div>
+            <button class="ds-menu-item" role="menuitemradio" aria-checked="true" tabindex="-1">道商义工团<svg class="ml-auto" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button>
+            <button class="ds-menu-item" role="menuitemradio" aria-checked="false" tabindex="-1">社区活动组<span class="ds-menu-hint">仅查看</span></button>
+            <button class="ds-menu-item" role="menuitemradio" aria-checked="false" tabindex="-1">教育小组</button>
+          </div></div>
+        <div class="ds-tabs" role="group" aria-label="语言"><button class="ds-tab" aria-pressed="true" lang="zh" data-lang>中</button><button class="ds-tab" aria-pressed="false" lang="en" data-lang>EN</button></div>
+        <div class="ds-popover-wrap" data-menu><button class="ds-btn ds-btn-ghost ds-btn-sm" aria-haspopup="menu" aria-expanded="false" aria-label="账户: 小明"><span class="ds-avatar" aria-hidden="true">小</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="ds-popover ds-popover-end" role="menu" aria-label="账户" hidden>
+            <div class="ds-menu-label">小明 · xiaoming@example.com</div>
+            <button class="ds-menu-item" role="menuitem" tabindex="-1">设置</button>
+            <button class="ds-menu-item" role="menuitem" tabindex="-1">帮助</button>
+            <div class="ds-menu-sep" role="separator"></div>
+            <button class="ds-menu-item" role="menuitem" tabindex="-1">退出登录</button>
+          </div></div>
+      </div>
+    </div></div></div>
+    <p class="ds-hint mt-2">Narrow the window below 768px: the links collapse into the menu button. Signed out: show an outline 登录 button in place of the account menu. While the workspace list loads, reserve its width with a skeleton so the header doesn't jump.</p>
+
+    <div class="mt-8 grid gap-8 md:grid-cols-2">
+      <div>
+        <p class="mb-2 text-sm font-medium">Drawer and bottom sheet</p>
+        <div class="flex flex-wrap gap-3"><button class="ds-btn ds-btn-outline ds-btn-sm" data-open-sheet="drawer">Nav drawer</button><button class="ds-btn ds-btn-outline ds-btn-sm" data-open-sheet="bsheet">Bottom sheet</button></div>
+        <p class="ds-hint mt-2">Sheets slide, trap focus, close on Esc or scrim, and return focus. Bottom sheet: pickers and secondary panels on phones where a side column has no room.</p>
+      </div>
+      <div>
+        <p class="mb-2 text-sm font-medium">Breadcrumbs</p>
+        <nav aria-label="当前位置"><ol class="ds-crumbs"><li><a class="ds-link" href="#navigation">工作区</a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-ink-faint" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></li><li><a class="ds-link" href="#navigation">海报</a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-ink-faint" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></li><li><span aria-current="page">中秋海报</span></li></ol></nav>
+        <p class="ds-hint mt-2">Last item is the current page, not a link. Use for depth of 3+; skip on flat sites.</p>
+      </div>
+    </div>
+
+    <div class="mt-8">
+      <p class="mb-3 text-sm font-medium">Step indicator</p>
+      <div class="flex flex-wrap items-center gap-4">
+        <ol class="ds-steps" id="steps" aria-label="步骤"></ol>
+        <div class="flex gap-2"><button class="ds-btn ds-btn-outline ds-btn-sm" id="step-prev">返回</button><button class="ds-btn ds-btn-primary ds-btn-sm" id="step-next">下一步</button></div>
+      </div>
+      <p class="ds-hint mt-2">Completed = ink check, current = accent dot with tint, upcoming = outline. On phones only the current step shows its label.</p>
+    </div>
+
+    <div class="mt-8">
+      <p class="mb-2 text-sm font-medium">Footer</p>
+      <div class="ds-card"><footer class="ds-footer" style="margin-top:0;border-top:0;padding:20px 0"><div class="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 px-5">
+        <div class="flex items-center gap-3"><img src="./daoshang-horizontal-mark-dark.png" alt="大道大商" class="brand-logo h-5 w-auto opacity-80"><span>© 2026 版权所有</span></div>
+        <nav aria-label="Footer" class="flex flex-wrap gap-x-5 gap-y-1"><a href="#navigation">关于</a><a href="#navigation">联系我们</a><a href="#navigation">隐私</a></nav>
+      </div></footer></div>
+    </div>
+  </section>
+
+  <!-- MENUS & TIPS -->
+  <section id="menus" class="sg-section">
+    <h2 class="font-display text-2xl mb-2">Menus, popovers &amp; tooltips</h2>
+    <p class="text-sm text-ink-soft mb-6 max-w-2xl">Pick by job. <b>Menu</b>: a list of actions. <b>Popover</b>: a little extra content or a mini form. <b>Tooltip</b>: a name or shortcut for an icon button, never required information. <b>Confirm dialog</b>: before something that can't be undone.</p>
+    <div class="sg-demo flex flex-wrap items-center gap-4">
+      <div class="ds-popover-wrap" data-menu><button class="ds-btn ds-btn-outline" aria-haspopup="menu" aria-expanded="false">更多操作<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="ds-popover ds-popover-start" role="menu" aria-label="更多操作" hidden>
+          <button class="ds-menu-item" role="menuitem" tabindex="-1">重命名<span class="ds-menu-hint">F2</span></button>
+          <button class="ds-menu-item" role="menuitem" tabindex="-1">复制</button>
+          <button class="ds-menu-item" role="menuitem" aria-disabled="true" tabindex="-1">移动到…</button>
+          <div class="ds-menu-sep" role="separator"></div>
+          <button class="ds-menu-item ds-menu-item-danger" role="menuitem" tabindex="-1" data-confirm>删除海报</button>
+        </div></div>
+
+      <div class="ds-popover-wrap" data-popover><button class="ds-btn ds-btn-outline" aria-haspopup="dialog" aria-expanded="false">尺寸说明</button>
+        <div class="ds-popover ds-popover-start ds-popover-body" role="dialog" aria-label="尺寸说明" hidden><p class="font-display text-base">海报比例</p><p class="mt-1 text-ink-soft">3:4 适合朋友圈与打印，9:16 适合手机全屏。</p></div></div>
+
+      <span class="ds-tip-wrap"><button class="ds-btn ds-btn-outline ds-btn-icon" aria-label="分享" aria-describedby="tip1"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13"/></svg></button><span id="tip1" role="tooltip" class="ds-tip">分享</span></span>
+      <span class="ds-tip-wrap ds-tip-bottom"><button class="ds-btn ds-btn-outline ds-btn-icon" aria-label="撤销" aria-describedby="tip2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7v6h6M3 13a9 9 0 1 0 3-7"/></svg></button><span id="tip2" role="tooltip" class="ds-tip">撤销 ⌘Z</span></span>
+      <button class="ds-btn ds-btn-danger" data-confirm>删除海报…</button>
+    </div>
+    <p class="ds-hint mt-3">Menus: Arrow keys, Home/End, Esc returns focus to the button. Tooltips appear after 350ms on hover or keyboard focus and are hidden on touch devices. The tooltip is a hint only: the button already has an aria-label.</p>
+  </section>
+
+  <!-- LAYOUTS -->
+  <section id="layouts" class="sg-section">
+    <h2 class="font-display text-2xl mb-2">Page layouts</h2>
+    <p class="text-sm text-ink-soft mb-6 max-w-2xl">Three shells cover almost every screen. Content width is <span class="sg-code">ds-container</span> (72rem, 24px gutter); page titles are serif, with the primary action first on phones.</p>
+    <div class="grid gap-6 md:grid-cols-3">
+      <figure><div class="ds-card p-3" style="aspect-ratio:4/3"><div class="ds-skeleton h-3 w-full" style="animation:none"></div><div class="mx-3 mt-4"><div class="ds-skeleton h-4 w-1/2" style="animation:none"></div><div class="ds-skeleton mt-2 h-2 w-2/3" style="animation:none"></div><div class="mt-4 grid grid-cols-3 gap-2"><div class="ds-skeleton h-10" style="animation:none"></div><div class="ds-skeleton h-10" style="animation:none"></div><div class="ds-skeleton h-10" style="animation:none"></div></div></div></div><figcaption class="mt-2 text-sm"><b>PageShell</b> <span class="ds-hint">· header, container, footer. Galleries, lists, dashboards.</span></figcaption></figure>
+      <figure><div class="ds-card grid place-items-center p-3" style="aspect-ratio:4/3;background:var(--color-paper-deep)"><div class="ds-card w-3/5 p-3"><div class="ds-skeleton h-3 w-1/2" style="animation:none"></div><div class="ds-skeleton mt-3 h-5 w-full" style="animation:none"></div><div class="ds-skeleton mt-2 h-5 w-full" style="animation:none"></div><div class="ds-skeleton mt-3 h-5 w-full" style="animation:none;background:var(--color-accent);opacity:.7"></div></div></div><figcaption class="mt-2 text-sm"><b>CenteredPage</b> <span class="ds-hint">· one card, 400px. Sign-in, invite, not-found.</span></figcaption></figure>
+      <figure><div class="ds-card p-3" style="aspect-ratio:4/3"><div class="ds-skeleton h-3 w-full" style="animation:none"></div><div class="mt-4 flex gap-3"><div class="w-1/4"><div class="ds-skeleton h-24" style="animation:none"></div></div><div class="flex-1"><div class="ds-skeleton h-4 w-1/2" style="animation:none"></div><div class="ds-skeleton mt-3 h-16" style="animation:none"></div></div></div></div><figcaption class="mt-2 text-sm"><b>SidebarLayout</b> <span class="ds-hint">· 240px sticky aside from <span class="sg-code">lg</span>; on phones the aside moves into a bottom sheet. Editors, settings, admin.</span></figcaption></figure>
+    </div>
+  </section>
+
+  <!-- VOICE -->
+  <section id="voice" class="sg-section">
+    <h2 class="font-display text-2xl mb-2">Content &amp; voice</h2>
+    <p class="text-sm text-ink-soft mb-6 max-w-2xl">Warm, plain and respectful, like a helpful neighbour at the community centre. Chinese first, English beside or beneath. Say what happened and what to do next; never blame the person.</p>
+    <div class="ds-card overflow-x-auto"><table class="ds-table"><thead><tr><th>Situation</th><th>Say</th><th>Avoid</th></tr></thead><tbody>
+      <tr><td>Button label</td><td>保存海报 · Save poster</td><td class="text-ink-soft">确定 · OK · Submit</td></tr>
+      <tr><td>Destructive confirm</td><td>删除海报 (names the thing)</td><td class="text-ink-soft">确定 · Yes</td></tr>
+      <tr><td>Error</td><td>上传失败，图片超过 10 MB。请压缩后重试。</td><td class="text-ink-soft">出错了！错误代码 500</td></tr>
+      <tr><td>Empty state</td><td>还没有海报。从模板开始，或上传背景图。</td><td class="text-ink-soft">暂无数据</td></tr>
+      <tr><td>Success</td><td>已发布。 · Published.</td><td class="text-ink-soft">操作成功！</td></tr>
+      <tr><td>Loading (over 1s)</td><td>正在生成海报…</td><td class="text-ink-soft">请稍候</td></tr>
+      <tr><td>Permission</td><td>你只有查看权限。联系管理员可申请编辑。</td><td class="text-ink-soft">无权访问</td></tr>
+    </tbody></table></div>
+    <div class="mt-6 grid gap-6 md:grid-cols-2">
+      <div class="ds-card p-5"><p class="font-display text-lg">Writing rules</p><ul class="mt-2 list-disc space-y-1.5 pl-5 text-sm text-ink-soft">
+        <li>Buttons: verb + object. Cancel is always 取消 / Cancel.</li>
+        <li>Errors: what happened, then the fix. No codes up front, no "Oops".</li>
+        <li>Empty states: what belongs here, plus one action.</li>
+        <li>Success: short and specific. The seal stamp is for the big ones only.</li>
+        <li>Chinese: full-width punctuation (，。：). English: sentence case, never ALL CAPS sentences.</li>
+        <li>Space between Chinese and numbers or Latin words (更新于 3 分钟前).</li>
+        <li>Dates: 2026年10月5日 / 5 Oct 2026. Don't translate proper names.</li>
+        <li>Icon-only buttons carry an aria-label in the page language.</li>
+      </ul></div>
+      <div class="ds-card p-5"><p class="font-display text-lg">Standard labels <span class="sg-code">labels.zh / labels.en</span></p>
+        <div class="mt-3 grid grid-cols-2 gap-x-6 gap-y-1 text-sm"><span>取消 · Cancel</span><span>确认 · Confirm</span><span>保存 · Save</span><span>删除 · Delete</span><span>关闭 · Close</span><span>重试 · Try again</span><span>返回 · Back</span><span>下一步 · Next</span><span>登录 · Sign in</span><span>退出登录 · Sign out</span><span>设置 · Settings</span><span>帮助 · Help</span></div>
+        <p class="ds-hint mt-3">Components take <span class="sg-code">lang="zh"|"en"</span> (default zh) and use these. Import <span class="sg-code">labels</span> for your own UI.</p></div>
+    </div>
+  </section>
+</main>
+</div>
+
+<div class="ds-sheet-root" id="drawer" data-open="false" inert aria-hidden="true"><div class="ds-sheet-scrim" data-close-sheet></div>
+  <div class="ds-sheet ds-sheet-left" role="dialog" aria-modal="true" aria-label="菜单"><div class="ds-sheet-head"><h2 class="font-display text-base">菜单</h2><button class="ds-btn ds-btn-ghost ds-btn-icon" data-close-sheet aria-label="关闭"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="ds-sheet-body"><nav aria-label="主导航" class="flex flex-col gap-1"><a class="ds-drawer-link" href="#navigation" aria-current="page">海报</a><a class="ds-drawer-link" href="#navigation">模板</a><a class="ds-drawer-link" href="#navigation">素材库</a></nav></div></div></div>
+<div class="ds-sheet-root" id="bsheet" data-open="false" inert aria-hidden="true"><div class="ds-sheet-scrim" data-close-sheet></div>
+  <div class="ds-sheet ds-sheet-bottom" role="dialog" aria-modal="true" aria-label="选择比例"><div class="ds-sheet-grab" aria-hidden="true"></div><div class="ds-sheet-head"><h2 class="font-display text-base">选择比例</h2><button class="ds-btn ds-btn-ghost ds-btn-icon" data-close-sheet aria-label="关闭"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="ds-sheet-body"><div class="grid gap-2"><button class="ds-btn ds-btn-outline">3:4 海报</button><button class="ds-btn ds-btn-outline">1:1 方形</button><button class="ds-btn ds-btn-outline">9:16 手机全屏</button></div></div></div></div>
+<div id="modal-root"></div><div id="toast-root"></div>
+
+<script>
+const COLORS = [
+  ['paper','Page'],['paper-deep','Recessed'],['surface','Cards/inputs'],['ink','Text'],['ink-soft','Secondary'],['ink-faint','Hints'],
+  ['border-soft','Dividers'],['border-strong','Form edges'],['accent','Brand fill'],['accent-hover','Hover'],['accent-soft','Tint'],['accent-text','Accent as text'],['focus','Focus ring'],['on-accent','Text on accent'],['danger','Error'],['warn','Warning'],['success','Success'],['scrim','Overlay']
+];
+const sw = document.getElementById('swatches');
+function paintSwatches(){
+  sw.innerHTML = COLORS.map(([n,u])=>`<button class="text-left" data-tok="${n}"><div class="sg-swatch" style="background:var(--color-${n})"></div><p class="mt-2 text-sm font-medium">${n}</p><p class="sg-code" data-hex="${n}"></p><p class="ds-hint">${u}</p></button>`).join('');
+  sw.querySelectorAll('[data-hex]').forEach(e=>e.textContent=getComputedStyle(document.documentElement).getPropertyValue('--color-'+e.dataset.hex).trim());
+}
+sw.addEventListener('click',e=>{const b=e.target.closest('[data-tok]');if(!b)return;navigator.clipboard?.writeText('--color-'+b.dataset.tok);toast('Copied --color-'+b.dataset.tok)});
+paintSwatches();
+
+// Theme
+const root=document.documentElement, themeTabs=document.querySelectorAll('#theme .ds-tab');
+themeTabs.forEach(b=>b.onclick=()=>{
+  themeTabs.forEach(x=>x.setAttribute('aria-pressed',x===b));
+  b.dataset.t==='auto'?root.removeAttribute('data-theme'):root.setAttribute('data-theme',b.dataset.t);
+  requestAnimationFrame(paintSwatches);
+});
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>requestAnimationFrame(paintSwatches));
+
+// Scrollspy
+const links=[...document.querySelectorAll('.sg-nav a')];
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  links.forEach(l=>{l.getAttribute('href')==='#'+e.target.id?l.setAttribute('aria-current','true'):l.removeAttribute('aria-current')});
+}),{rootMargin:'-20% 0px -70% 0px'});
+document.querySelectorAll('.sg-section').forEach(x=>io.observe(x));
+
+// Tabs & switch
+document.querySelectorAll('.demo-tabs').forEach(g=>g.querySelectorAll('.ds-tab').forEach(b=>b.onclick=()=>g.querySelectorAll('.ds-tab').forEach(x=>x.setAttribute('aria-selected',x===b))));
+const s=document.getElementById('sw'); s.onclick=()=>s.setAttribute('aria-checked',s.getAttribute('aria-checked')!=='true');
+
+// Motion replay
+document.querySelectorAll('[data-replay]').forEach(b=>b.onclick=()=>{const m=document.querySelector('[data-demo="'+b.dataset.replay+'"]');const h=m.innerHTML;m.innerHTML='';requestAnimationFrame(()=>requestAnimationFrame(()=>m.innerHTML=h))});
+const sw2=document.getElementById('sw2'); sw2.onclick=()=>sw2.setAttribute('aria-checked',sw2.getAttribute('aria-checked')!=='true');
+
+// Toast
+let tt; function toast(msg,err){const r=document.getElementById('toast-root');r.innerHTML=`<div role="${err?'alert':'status'}" class="ds-toast ${err?'ds-toast-error':''}">${msg}</div>`;clearTimeout(tt);tt=setTimeout(()=>r.innerHTML='',3000)}
+document.getElementById('open-toast').onclick=()=>toast('已保存 Saved');
+document.getElementById('open-toast-err').onclick=()=>toast('上传失败 Upload failed',true);
+
+// Modal / confirm dialog
+const mr=document.getElementById('modal-root');let untrapM=null;
+function closeModal(){mr.innerHTML='';document.body.style.overflow='';untrapM&&untrapM();untrapM=null}
+function showDialog(title,body,confirmLabel,danger){
+  mr.innerHTML=`<div class="ds-backdrop" id="bd"><div class="ds-modal" role="dialog" aria-modal="true" aria-labelledby="mt"><div class="mb-4 flex items-start justify-between gap-4"><h2 id="mt" class="font-display text-xl">${title}</h2><button class="ds-btn ds-btn-ghost ds-btn-icon" id="mx" aria-label="关闭"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><p class="text-sm text-ink-soft">${body}</p><div class="mt-6 flex justify-end gap-2"><button class="ds-btn ds-btn-outline" id="mc">取消</button><button class="ds-btn ${danger?'ds-btn-danger':'ds-btn-primary'}" id="mc2">${confirmLabel}</button></div></div></div>`;
+  document.body.style.overflow='hidden';
+  ['mx','mc','mc2'].forEach(i=>document.getElementById(i).onclick=closeModal);
+  document.getElementById('bd').onclick=e=>{if(e.target.id==='bd')closeModal()};
+  untrapM=trap(mr.querySelector('.ds-modal'),closeModal);
+}
+document.getElementById('open-modal').onclick=()=>showDialog('删除海报？','此操作无法撤销。This can\'t be undone.','删除',true);
+document.querySelectorAll('[data-confirm]').forEach(b=>b.addEventListener('click',()=>{closeAllMenus();showDialog('删除“中秋海报”？','删除后无法恢复。','删除海报',true)}));
+
+// ---- Focus trap shared by sheets and modals
+const FOC='a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])';
+function trap(el,onEsc){
+  const prev=document.activeElement; const items=()=>[...el.querySelectorAll(FOC)].filter(x=>x.offsetParent!==null||x===document.activeElement);
+  (items()[0]||el).focus();
+  const k=e=>{ if(e.key==='Escape'){e.stopPropagation();onEsc();return}
+    if(e.key!=='Tab')return; const l=items(); if(!l.length){e.preventDefault();return}
+    const f=l[0],z=l[l.length-1]; if(e.shiftKey&&document.activeElement===f){e.preventDefault();z.focus()} else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();f.focus()} };
+  document.addEventListener('keydown',k);
+  return ()=>{document.removeEventListener('keydown',k);prev&&prev.focus&&prev.focus()};
+}
+// ---- Sheets
+let untrap=null;
+function openSheet(id){const r=document.getElementById(id);r.dataset.open='true';r.removeAttribute('inert');r.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';untrap=trap(r.querySelector('.ds-sheet'),()=>closeSheet(id))}
+function closeSheet(id){const r=document.getElementById(id);r.dataset.open='false';r.setAttribute('inert','');r.setAttribute('aria-hidden','true');document.body.style.overflow='';untrap&&untrap();untrap=null}
+document.querySelectorAll('[data-open-sheet]').forEach(b=>b.onclick=()=>openSheet(b.dataset.openSheet));
+document.querySelectorAll('.ds-sheet-root').forEach(r=>r.querySelectorAll('[data-close-sheet]').forEach(b=>b.onclick=()=>closeSheet(r.id)));
+// ---- Menus & popovers
+function closeAllMenus(except){document.querySelectorAll('[data-menu],[data-popover]').forEach(w=>{if(w===except)return;const p=w.querySelector('.ds-popover');if(!p.hidden){p.hidden=true;w.querySelector('[aria-haspopup]').setAttribute('aria-expanded','false')}})}
+document.querySelectorAll('[data-menu],[data-popover]').forEach(w=>{
+  const btn=w.querySelector('[aria-haspopup]'),pop=w.querySelector('.ds-popover'),isMenu=w.hasAttribute('data-menu');
+  const items=()=>[...pop.querySelectorAll('[role^="menuitem"]:not([aria-disabled="true"])')];
+  const focusAt=i=>{const l=items();if(l.length)l[(i+l.length)%l.length].focus()};
+  const open=(last)=>{closeAllMenus(w);pop.hidden=false;btn.setAttribute('aria-expanded','true');if(isMenu)focusAt(last?-1:0)};
+  const close=(refocus)=>{pop.hidden=true;btn.setAttribute('aria-expanded','false');if(refocus)btn.focus()};
+  btn.addEventListener('click',()=>pop.hidden?open():close());
+  if(isMenu){
+    btn.addEventListener('keydown',e=>{if(e.key==='ArrowDown'){e.preventDefault();open()}if(e.key==='ArrowUp'){e.preventDefault();open(true)}});
+    pop.addEventListener('keydown',e=>{const l=items(),i=l.indexOf(document.activeElement);
+      if(e.key==='ArrowDown'){e.preventDefault();focusAt(i+1)}else if(e.key==='ArrowUp'){e.preventDefault();focusAt(i-1)}
+      else if(e.key==='Home'){e.preventDefault();focusAt(0)}else if(e.key==='End'){e.preventDefault();focusAt(-1)}
+      else if(e.key==='Escape'){e.preventDefault();close(true)}else if(e.key==='Tab')close()});
+    pop.querySelectorAll('[role="menuitemradio"]').forEach(it=>it.addEventListener('click',()=>{pop.querySelectorAll('[role="menuitemradio"]').forEach(x=>x.setAttribute('aria-checked',x===it));close(true)}));
+    pop.querySelectorAll('[role="menuitem"]:not([data-confirm])').forEach(it=>it.addEventListener('click',()=>close(true)));
+  } else pop.addEventListener('keydown',e=>{if(e.key==='Escape'){close(true)}});
+});
+document.addEventListener('mousedown',e=>{if(!e.target.closest('[data-menu],[data-popover]'))closeAllMenus()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAllMenus()});
+// language toggle + steps
+document.querySelectorAll('[data-lang]').forEach(b=>b.onclick=()=>document.querySelectorAll('[data-lang]').forEach(x=>x.setAttribute('aria-pressed',x===b)));
+const STEPS=['选模板','编辑','预览','发布'];let step=1;
+const stepsEl=document.getElementById('steps');
+function paintSteps(){stepsEl.innerHTML=STEPS.map((l,i)=>{const st=i<step?'done':i===step?'current':'todo';return `<li class="flex items-center gap-1">${i?'<span class="ds-step-line" aria-hidden="true"></span>':''}<span class="ds-step" data-state="${st}" ${st==='current'?'aria-current="step"':''}><span class="ds-step-dot">${st==='done'?'<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>':i+1}</span><span class="ds-step-label">${l}</span></span></li>`}).join('')}
+document.getElementById('step-prev').onclick=()=>{step=Math.max(0,step-1);paintSteps()};
+document.getElementById('step-next').onclick=()=>{step=Math.min(STEPS.length-1,step+1);paintSteps()};paintSteps();
+</script>
+</body>
+</html>

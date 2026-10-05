@@ -1,0 +1,8 @@
+/* Optional. Apps that load Noto SC via next/font can skip this. Needs @fontsource/noto-sans-sc and
+   @fontsource/noto-serif-sc installed in the app. */
+@import '@fontsource/noto-sans-sc/400.css';
+@import '@fontsource/noto-sans-sc/500.css';
+@import '@fontsource/noto-sans-sc/700.css';
+@import '@fontsource/noto-serif-sc/400.css';
+@import '@fontsource/noto-serif-sc/500.css';
+@import '@fontsource/noto-serif-sc/700.css';
