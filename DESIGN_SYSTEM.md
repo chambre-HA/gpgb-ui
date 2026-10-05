@@ -89,7 +89,7 @@ Rules: one flourish per view; everything else is quiet feedback that answers an 
 ## Navigation
 | Piece | React | Notes |
 |---|---|---|
-| Header | `<SiteHeader logoSrc title nav actions menuButton containerClassName homeLabel>` | Graphic logo left; `nav` shows from `md`; `menuButton` shows below `md`. Includes a skip link to `#main` (give your `<main>` that id). `containerClassName` sets the content width (default 72rem `ds-container`; narrow apps pass e.g. `mx-auto max-w-2xl px-5`). Put short always-visible links in `actions` instead of `nav`. |
+| Header | `<SiteHeader logoSrc title nav actions menuButton containerClassName homeLabel>` | Graphic logo left; `nav` shows from `md`; `menuButton` shows below `md`. Includes a skip link to `#main` (give your `<main>` that id). `containerClassName` sets the content width (default the 72rem `ds-container` frame; pass `ds-container ds-container-wide` on wide pages; don't narrow it). Put short always-visible links in `actions` instead of `nav`. |
 | Nav links | `<NavLinks items>` / `ds-nav-link` | Pill links; current = accent-soft wash + `aria-current="page"`. |
 | Phone nav | `<MenuButton>` + `<NavDrawer items open onOpenChange>` | Left drawer (`Sheet side="left"`). Closes on link click, Esc, scrim. |
 | Account | `<UserMenu>` / `<SignInButton>` | Avatar + menu: settings, extras, sign out. Signed out: outline 登录 button. |
@@ -105,8 +105,18 @@ Pick by job: **Menu** = list of actions; **Popover** = a little extra content or
 - Modal, ConfirmDialog and Sheet trap focus, close on Esc, lock scroll and restore focus to the opener. Footer order: outline cancel, then the primary or danger action, whose label names the action ("删除海报", not "确定").
 - Positioning is simple (below the trigger, start or end aligned); there is no collision flipping yet. Keep triggers away from the bottom edge, or use a Sheet on phones.
 
+## Page width
+One width across all 大道大商 apps: the **72rem frame** (1152px, centered), as on draw.gpgb.app. Gutters are 16px, then 24px from 640px, so desktop content is **1104px** wide. The header and the page content share the frame.
+- **Standard:** `ds-container` (72rem). Galleries, dashboards, chat, lists, forms-with-context.
+- **Wide:** `ds-container ds-container-wide` (80rem). Editors and big tables only. Pass the same to `SiteHeader`'s `containerClassName`.
+- **Never narrow the frame.** Narrow content is a column *inside* it: `ds-measure` (42rem) for reading text or a single form. Sign-in, invite and not-found pages are a `CenteredPage` card (400px).
+- **Use the width:** `ds-split` / `<SplitLayout aside>` puts content on the left and a 22rem side panel (share link, QR, info, actions) on the right from 1024px, stacking below on smaller screens; `ds-grid-cards` is a responsive card grid (columns of at least 18rem); `<SidebarLayout>` is a left navigation column (240px) for editors, settings and admin.
+- **Phones:** everything is one column with 16px gutters; the frame only matters from tablet up.
+
+Tailwind note: `rounded-sm/md/lg/xl` (6/8/12/16px) and `shadow-sm/md/lg` are the system scale (they are defined in `@theme`), so they differ slightly from Tailwind's defaults in every app that imports the package. Use them rather than arbitrary radii.
+
 ## Page layouts
-`<PageShell header footer>` (header, 72rem container, footer: lists, galleries, dashboards) · `<CenteredPage>` (one 400px card: sign-in, invite, not-found) · `<SidebarLayout aside>` (240px sticky aside from `lg`; on phones move the aside into a bottom Sheet: editors, settings, admin) · `<PageTitle title description actions breadcrumbs>` (serif title, primary action first on phones).
+`<PageShell header footer wide>` (header, frame, footer: lists, galleries, dashboards) · `<CenteredPage>` (one 400px card: sign-in, invite, not-found) · `<SplitLayout aside>` (content + right side panel) · `<SidebarLayout aside>` (left navigation column: editors, settings, admin; on phones move it into a bottom Sheet) · `<PageTitle title description actions breadcrumbs>` (serif title, primary action first on phones).
 
 ## Content & voice
 Warm, plain, respectful: a helpful neighbour at the community centre. Chinese (简体) first, English beside or beneath. Say what happened and what to do next; never blame the person.

@@ -21,7 +21,7 @@
 
 <header class="ds-header sticky top-0 z-40 bg-paper/90 backdrop-blur">
   <div class="ds-container flex items-center justify-between gap-4 py-3">
-    <div class="flex items-baseline gap-3"><span class="font-display text-lg">大道大商 Style Guide</span><span class="ds-hint">@vibeuncle/gpgb-ui v0.1</span></div>
+    <div class="flex items-baseline gap-3"><span class="font-display text-lg">大道大商 Style Guide</span><span class="ds-hint">@vibeuncle/gpgb-ui v0.3</span></div>
     <div class="ds-tabs" role="group" aria-label="Theme" id="theme">
       <button class="ds-tab" data-t="auto" aria-pressed="true">Auto</button>
       <button class="ds-tab" data-t="light" aria-pressed="false">Light</button>
@@ -354,13 +354,33 @@
 
   <!-- LAYOUTS -->
   <section id="layouts" class="sg-section">
-    <h2 class="font-display text-2xl mb-2">Page layouts</h2>
-    <p class="text-sm text-ink-soft mb-6 max-w-2xl">Three shells cover almost every screen. Content width is <span class="sg-code">ds-container</span> (72rem, 24px gutter); page titles are serif, with the primary action first on phones.</p>
-    <div class="grid gap-6 md:grid-cols-3">
-      <figure><div class="ds-card p-3" style="aspect-ratio:4/3"><div class="ds-skeleton h-3 w-full" style="animation:none"></div><div class="mx-3 mt-4"><div class="ds-skeleton h-4 w-1/2" style="animation:none"></div><div class="ds-skeleton mt-2 h-2 w-2/3" style="animation:none"></div><div class="mt-4 grid grid-cols-3 gap-2"><div class="ds-skeleton h-10" style="animation:none"></div><div class="ds-skeleton h-10" style="animation:none"></div><div class="ds-skeleton h-10" style="animation:none"></div></div></div></div><figcaption class="mt-2 text-sm"><b>PageShell</b> <span class="ds-hint">· header, container, footer. Galleries, lists, dashboards.</span></figcaption></figure>
-      <figure><div class="ds-card grid place-items-center p-3" style="aspect-ratio:4/3;background:var(--color-paper-deep)"><div class="ds-card w-3/5 p-3"><div class="ds-skeleton h-3 w-1/2" style="animation:none"></div><div class="ds-skeleton mt-3 h-5 w-full" style="animation:none"></div><div class="ds-skeleton mt-2 h-5 w-full" style="animation:none"></div><div class="ds-skeleton mt-3 h-5 w-full" style="animation:none;background:var(--color-accent);opacity:.7"></div></div></div><figcaption class="mt-2 text-sm"><b>CenteredPage</b> <span class="ds-hint">· one card, 400px. Sign-in, invite, not-found.</span></figcaption></figure>
-      <figure><div class="ds-card p-3" style="aspect-ratio:4/3"><div class="ds-skeleton h-3 w-full" style="animation:none"></div><div class="mt-4 flex gap-3"><div class="w-1/4"><div class="ds-skeleton h-24" style="animation:none"></div></div><div class="flex-1"><div class="ds-skeleton h-4 w-1/2" style="animation:none"></div><div class="ds-skeleton mt-3 h-16" style="animation:none"></div></div></div></div><figcaption class="mt-2 text-sm"><b>SidebarLayout</b> <span class="ds-hint">· 240px sticky aside from <span class="sg-code">lg</span>; on phones the aside moves into a bottom sheet. Editors, settings, admin.</span></figcaption></figure>
+    <h2 class="font-display text-2xl mb-2">Page width &amp; layouts</h2>
+    <p class="text-sm text-ink-soft mb-6 max-w-2xl">One width for every 大道大商 app: the <b>72rem frame</b> (1152px) of draw.gpgb.app, with 16px gutters on phones and 24px from 640px, so desktop content is 1104px. The header and the page share it. Narrow content is a column <i>inside</i> the frame, never a narrower frame.</p>
+
+    <div class="sg-demo space-y-4 text-center text-xs">
+      <div class="mx-auto" style="max-width:80rem"><div class="rounded-md border border-dashed py-2" style="border-color:var(--color-border-strong)">wide frame · <span class="sg-code">ds-container ds-container-wide</span> · 80rem · editors, big tables</div></div>
+      <div class="mx-auto" style="max-width:72rem"><div class="rounded-md border py-2" style="border-color:var(--color-accent);background:var(--color-accent-soft)"><b>standard frame</b> · <span class="sg-code">ds-container</span> · 72rem · 1152px (1104px content) · header and page</div></div>
+      <div class="mx-auto" style="max-width:42rem"><div class="rounded-md border border-dashed py-2" style="border-color:var(--color-border-strong)">reading column · <span class="sg-code">ds-measure</span> · 42rem · inside the frame</div></div>
+      <div class="mx-auto" style="max-width:25rem"><div class="rounded-md border border-dashed py-2" style="border-color:var(--color-border-strong)">centered card · 400px · sign-in, invite, 404</div></div>
     </div>
+
+    <p class="mb-2 mt-10 text-sm font-medium">Content + side panel <span class="sg-code">ds-split</span> / <span class="sg-code">&lt;SplitLayout&gt;</span></p>
+    <div class="sg-demo"><div class="ds-split">
+      <div class="min-w-0 space-y-3">
+        <div class="ds-card p-4"><p class="font-display text-lg">接龙 · 中秋联欢会</p><p class="mt-1 text-sm text-ink-soft">The list or form lives here and takes the remaining width.</p></div>
+        <div class="ds-card p-4 text-sm">1. 小明　2. 小红　3. 阿杰</div>
+      </div>
+      <aside class="space-y-3"><div class="ds-card p-4"><p class="ds-caption">Side panel · 22rem</p><p class="mt-2 text-sm">Share link, QR code, info and actions. Sticky from 1024px; stacks below the content on smaller screens.</p></div></aside>
+    </div></div>
+
+    <p class="mb-2 mt-10 text-sm font-medium">Card grid <span class="sg-code">ds-grid-cards</span></p>
+    <div class="sg-demo"><div class="ds-grid-cards">
+      <div class="ds-card ds-card-interactive p-4"><p class="font-display text-base">静心学堂知事群</p><p class="mt-1 text-xs text-ink-soft">3 个接龙</p></div>
+      <div class="ds-card ds-card-interactive p-4"><p class="font-display text-base">社区活动组</p><p class="mt-1 text-xs text-ink-soft">1 个接龙</p></div>
+      <div class="ds-card ds-card-interactive p-4"><p class="font-display text-base">教育小组</p><p class="mt-1 text-xs text-ink-soft">5 个接龙</p></div>
+      <div class="ds-card ds-card-interactive p-4"><p class="font-display text-base">义工团</p><p class="mt-1 text-xs text-ink-soft">2 个接龙</p></div>
+    </div></div>
+    <p class="ds-hint mt-3">Columns of at least 18rem: 3 across on a desktop frame, 1 on a phone. Also <span class="sg-code">&lt;SidebarLayout&gt;</span> (left 240px navigation column) for editors, settings and admin.</p>
   </section>
 
   <!-- VOICE -->

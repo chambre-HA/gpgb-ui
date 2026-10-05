@@ -288,7 +288,20 @@
   .ds-header { border-bottom: 1px solid var(--color-border-soft); }
   /* Hairline between the 大道大商 mark and the app name, so the graphic logo and the app title don't read as one phrase. */
   .ds-brand-divider { width: 1px; height: 20px; flex-shrink: 0; background: var(--color-border-strong); opacity: 0.55; }
-  .ds-container { margin-inline: auto; width: 100%; max-width: 72rem; padding-inline: 24px; }
+  /* Page width: the 72rem frame (1152px, = draw.gpgb.app), gutters 16px then 24px from 640px, so 1104px of content on desktop.
+     Header and page content share it. Never use a narrower frame: put narrow content in a column INSIDE it (ds-measure). */
+  .ds-container { margin-inline: auto; width: 100%; max-width: 72rem; padding-inline: 16px; }
+  @media (min-width: 640px) { .ds-container { padding-inline: 24px; } }
+  .ds-container-wide { max-width: 80rem; }   /* editors, big tables: add to ds-container */
+  .ds-measure { max-width: 42rem; }          /* reading text / single-column form inside the frame */
+  /* Content + side panel. From 1024px the panel sits to the right (22rem, sticky); below that it stacks under the content. */
+  .ds-split { display: grid; gap: 24px; }
+  @media (min-width: 1024px) {
+    .ds-split { grid-template-columns: minmax(0, 1fr) 22rem; gap: 32px; }
+    .ds-split > aside { position: sticky; top: 24px; align-self: start; }
+  }
+  /* Responsive card grid: as many columns as fit at >=18rem. */
+  .ds-grid-cards { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr)); }
   /* Underline draws in from the left on hover. */
   .ds-link {
     color: var(--color-ink-soft); text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;

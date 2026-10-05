@@ -7,7 +7,7 @@ import { useLink } from '../link'
  *  Phones: pass `menuButton` (see MenuButton + NavDrawer) and hide `nav` below `md` (NavLinks className="hidden md:flex"). */
 export function SiteHeader({ logoSrc, logoAlt = '大道大商', title, nav, actions, menuButton, href = '/', containerClassName = 'ds-container', homeLabel }: {
   logoSrc: string; logoAlt?: string; title?: string; nav?: ReactNode; actions?: ReactNode; menuButton?: ReactNode; href?: string
-  /** Width/gutter of the header content. Default `ds-container` (72rem). Narrow apps pass e.g. 'mx-auto max-w-2xl px-5' to line up with their page column. */
+  /** Width/gutter of the header content. Default `ds-container` (the 72rem frame). Keep it equal to the page's frame: pass 'ds-container ds-container-wide' on wide pages. Don't narrow it; put narrow content in a column inside the frame. */
   containerClassName?: string
   /** aria-label for the logo link when there is no title (e.g. "接龙 首页"). */
   homeLabel?: string

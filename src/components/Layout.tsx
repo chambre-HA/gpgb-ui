@@ -6,12 +6,12 @@ import { t } from '../copy'
 import type { Lang } from '../copy'
 import { useLink } from '../link'
 
-/** Standard page: header, main, footer. Content width via `ds-container`. */
-export function PageShell({ header, children, footer }: { header?: ReactNode; children: ReactNode; footer?: ReactNode }) {
+/** Standard page: header, main, footer, all on the 72rem frame (`wide` = 80rem for editors and big tables). */
+export function PageShell({ header, children, footer, wide }: { header?: ReactNode; children: ReactNode; footer?: ReactNode; wide?: boolean }) {
   return (
     <div className="ds-page">
       {header}
-      <main id="main" className="ds-container py-10">{children}</main>
+      <main id="main" className={cn('ds-container py-10', wide && 'ds-container-wide')}>{children}</main>
       {footer}
     </div>
   )
@@ -36,6 +36,11 @@ export function PageTitle({ title, description, actions, breadcrumbs }: { title:
       </div>
     </div>
   )
+}
+
+/** Content + side panel (share link, QR, info, actions). Panel is on the right from 1024px (sticky) and stacks below the content on smaller screens. */
+export function SplitLayout({ aside, children }: { aside: ReactNode; children: ReactNode }) {
+  return <div className="ds-split"><div className="min-w-0">{children}</div><aside>{aside}</aside></div>
 }
 
 /** Sidebar + content (editor, settings, admin). Sidebar is sticky from `lg`; on phones put its content in a Sheet instead. */

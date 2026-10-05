@@ -187,7 +187,9 @@ Rule: no raw hex in app code; no Tailwind red/gray/orange.
 
 ## Layout
 
-- 4px base. Page gutter 24px; `ds-container` max 72rem. Card padding 16 to 24px; field gap 16px; button icon gap 8px.
+- **Page frame:** 72rem (1152px) centered, as draw.gpgb.app; gutters 16px, then 24px from 640px (1104px of content on desktop). The header and the content share it. Editors and big tables use the 80rem wide frame. Never a narrower frame: narrow content is a 42rem column (`ds-measure`) inside it; sign-in, invite and not-found are a 400px centered card.
+- **Using the width:** content plus a 22rem side panel (`ds-split`, from 1024px, sticky; stacks on smaller screens), responsive card grids (`ds-grid-cards`, columns of at least 18rem), or a 240px left navigation column for editors and admin.
+- 4px spacing base. Card padding 16 to 24px; field gap 16px; button icon gap 8px.
 - Mobile-first; `sm` (640px) is the phone/tablet switch. On touch (`pointer: coarse`) inputs are 16px (no iOS zoom) and buttons are 44px tall; switches get a 44px hit area; tabs 40px.
 - Sections separate with generous vertical space (40px) and a hairline; groups inside stay tight.
 

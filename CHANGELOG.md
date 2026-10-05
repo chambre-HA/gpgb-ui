@@ -2,6 +2,10 @@
 
 Versions follow semver while 0.x: **minor** = new components or token changes that may shift appearance, **patch** = fixes. Apps pin with `^0.x.0`.
 
+## 0.3.0
+- **Page width standard:** the 72rem (1152px) frame of draw.gpgb.app, now with responsive gutters (16px, 24px from 640px) so desktop content is 1104px. `ds-container-wide` (80rem), `ds-measure` (42rem reading column inside the frame), `ds-split` / `<SplitLayout>` (content + 22rem side panel), `ds-grid-cards` (auto-fill card grid). `<PageShell wide>`.
+- Docs: Tailwind's `rounded-sm/md/lg/xl` and `shadow-sm/md/lg` follow the system scale (they are defined in `@theme`), and the page-width rules.
+
 ## 0.2.1
 - Release pipeline only: publishes through npm trusted publishing (no token). No code or appearance changes.
 
