@@ -2,6 +2,10 @@
 
 Versions follow semver while 0.x: **minor** = new components or token changes that may shift appearance, **patch** = fixes. Apps pin with `^0.x.0`.
 
+## Unreleased
+- **Decks:** a "Decks (slides)" section in `DESIGN_SYSTEM.md` (and a summary in `DESIGN.md`): canvas, margins, colours, cover, logo placement, type scale, layouts, density and motion for 16:9 decks.
+- **Assets:** `assets/logo/daoshang-horizontal-mark-light.png`, the mark in white for dark surfaces where a CSS filter isn't available (decks, exports). Docs and assets only; no token or component changes.
+
 ## 0.4.0
 - **Standard sizes:** header row is a fixed 72px (`ds-header-row`, built into `SiteHeader`) so the logo and page sit at the same height in every app; exact control heights, sm 32 / md 40 / lg 48px for buttons and inputs (`ds-input-lg` added), tabs 40px; page head classes `ds-page-head`, `ds-title` (36/48px), `ds-title-sm`, `ds-lede`; `ds-search` and `<SearchInput>`; `<PageTitle small>`. `ds-page-title` removed (use `ds-page-head`).
 - The browser test suite now measures these sizes in the style guide.
