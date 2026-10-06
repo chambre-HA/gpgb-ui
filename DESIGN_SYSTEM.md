@@ -186,5 +186,24 @@ Colour values already match, so renames are mechanical. The one visual change is
 ## Theme preview
 `data-theme="light|dark"` on any element forces that theme for it (the style guide uses this on `<html>`); otherwise the OS setting applies. Visual reference: `styleguide/index.html` (rebuild with `npm run styleguide:build`). Machine-readable spec: `DESIGN.md`.
 
+## Decks (slides)
+For presentations and PDFs that explain the system or an app: 16:9, built from the same tokens, so a deck reads as the same room as the app. Reference implementation: `greatpath-draw/scripts/build-design-deck.py` (builds the 设计规范 deck through OfficeCLI; see `greatpath-draw/docs/README.md`). The builder takes its colours from the tokens above; a deck that needs a colour the tokens lack has the wrong colour.
+
+| Thing | Rule |
+|---|---|
+| Canvas | 16:9, 33.87 × 19.05 cm. One 2.4 cm margin on every side; every slide shares the same left edge |
+| Content slide | `paper` background. Title `ink`, serif bold; lede `ink-faint`; hairline `border-soft`; body `ink-soft` |
+| Cover | The one slide on the dark set: `paper-dark` background, `ink-dark` title, `ink-soft-dark` subtitle, `ink-faint-dark` note, one short `accent-dark` rule and icon. Opens the deck the way dark mode opens the app |
+| Logo | Bottom-right on **every** slide, 3.6 × 0.9 cm (the mark is 4:1), right edge aligned with the page number. `daoshang-horizontal-mark-dark.png` on `paper`, `…-mark-light.png` on the cover (pptx has no CSS filter, so the light file is a pre-made white copy) |
+| Type | Noto Serif SC bold for titles, Noto Sans SC for everything else. Cover title 54 pt, slide title 30 pt, cover subtitle 17 pt, item titles 13 to 15 pt, lede 13 pt, body 9.8 to 11.5 pt, page number 11 pt. Line spacing 1.0 for titles, 1.45 for body, 1.85 for the closing quote |
+| Header | Title top-left, lede beneath it, hairline under both. Top-right: `n / N`, then a 1.1 cm Lucide icon in `accent` naming the section |
+| Orange | `accent` appears only as the section icon, the cover rule, list markers and step discs. Never as a background, never as body text (use `accent-text` if it must read as text) |
+| Layouts | **Rules**: one or two columns of title + detail, balanced by measured height. **Avoid**: two columns, each item a title and a reason. **Checklist**: numbered `accent` discs, four columns. **Closing**: a single serif sentence on a white rounded card. Add a layout only when the content has a shape none of these fit |
+| Density | At most 6 rules or 8 list items per slide. A longer section continues on the next slide as "名称（1/2）", with a checklist's numbering carrying on |
+| Motion | Fade, medium, on every slide. Nothing else animates |
+| Don't | Photos or decorative shapes behind content; shadows; a second accent colour; type below 9.8 pt |
+
+OfficeCLI notes (non-ASCII working filenames are rejected, VPN TLS fallbacks, icon and shape numbering) live in `mindful-decks/CLAUDE.md`.
+
 ## Governance
 Change tokens here first, then bump the apps; never edit a copy inside an app. Add a component only when 2+ apps need it. Update this file and `styles/` in the same commit.

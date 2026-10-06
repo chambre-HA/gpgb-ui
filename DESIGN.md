@@ -252,6 +252,10 @@ Don't
 - Animate layout, or replay entrances on content people are reading.
 - Use the stamp more than once per view, or for anything minor.
 
+## Decks
+
+16:9 slides use the same tokens: `paper` content slides with `ink` serif titles and a `border-soft` hairline, and a single dark cover (`paper-dark`, `ink-dark`, `accent-dark`). The logo sits bottom-right on every slide, light mark on the cover, dark mark elsewhere. Orange is limited to the section icon, list markers and the cover rule. Full rules and sizes in `DESIGN_SYSTEM.md` under "Decks (slides)".
+
 ## Known exceptions
 
 - White on orange fills in light mode is 2.5:1 (3.4:1 on hover), below AA. Accepted to match greatpath-draw. Mitigation: labels stay 14px+ medium, never the only signal, and focus uses the separate `focus` token.
