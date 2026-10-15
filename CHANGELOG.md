@@ -2,7 +2,9 @@
 
 Versions follow semver while 0.x: **minor** = new components or token changes that may shift appearance, **patch** = fixes. Apps pin with `^0.x.0`.
 
-## Unreleased
+## 0.5.0
+- **`<WaitPanel>` / `ds-wait`** for waits over ~3s (AI writing, recording, rendering): an ensō ring that fills with real or estimated progress, a breathing circle (4s in, 4s out, 吸 / 呼), named stages, elapsed time against the usual duration, a gentle line per breath, optional cancel. `estimateProgress()` exported. New labels `breatheIn`, `breatheOut`, `breatheHint`, `waitUsually`, `waitLonger`.
+- Motion: the breath (`ds-breathe`) is the one slow loop allowed; reduced motion holds it still.
 - **Decks:** a "Decks (slides)" section in `DESIGN_SYSTEM.md` (and a summary in `DESIGN.md`): canvas, margins, colours, cover, logo placement, type scale, layouts, density and motion for 16:9 decks.
 - **Assets:** `assets/logo/daoshang-horizontal-mark-light.png`, the mark in white for dark surfaces where a CSS filter isn't available (decks, exports). Docs and assets only; no token or component changes.
 

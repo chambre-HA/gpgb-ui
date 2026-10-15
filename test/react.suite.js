@@ -54,6 +54,15 @@ const $$ = s => [...document.querySelectorAll(s)]
     ok('popover closes on outside click', !$('.ds-popover-body'))
     ok('LinkProvider: NavLinks use the app link component + aria-current', !!document.querySelector('#linkhost a[data-custom-link][aria-current=page]'))
     ok('tooltip wired via aria-describedby', $('#tbtn').getAttribute('aria-describedby') === $('[role=tooltip]').id)
+    const w1 = $('#waithost .ds-wait'), w2 = $('#wait2 .ds-wait')
+    ok('wait: indeterminate ring has no valuenow', !!w1 && !w1.querySelector('[role=progressbar]').hasAttribute('aria-valuenow'))
+    ok('wait: first stage current at start', w1.querySelector('[aria-current=step]')?.textContent === '一')
+    ok('wait: real progress sets valuenow', w2.querySelector('[role=progressbar]').getAttribute('aria-valuenow') === '50')
+    ok('wait: detail replaces usual note', w2.textContent.includes('6 of 12'))
+    ok('wait: live status names the stage', w1.querySelector('[role=status]').textContent === '正在撰写文稿：一')
+    ok('wait: breath cue in zh', w1.querySelector('.ds-wait-cue').textContent === '吸')
+    w2.querySelector('button').click(); ok('wait: cancel fires', document.body.dataset.cancelled === '1')
+    ok('wait: stages advance with time', await until(() => w1.querySelector('[aria-current=step]')?.textContent !== '一', 4000))
   } catch (e) { R.push('FAIL error: ' + e.message) }
   document.getElementById('o').textContent = R.join('\n'); document.title = 'done'
 })()

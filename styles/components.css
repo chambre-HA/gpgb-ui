@@ -179,6 +179,36 @@
     border-radius: 50%; animation: ds-spin 0.7s linear infinite;
   }
 
+  /* ---- Long wait (WaitPanel): AI writing, recording, rendering. Over ~3s; shorter waits use aria-busy. ---- */
+  .ds-wait {
+    display: flex; flex-wrap: wrap; align-items: flex-start; gap: 20px; padding: 20px; background: var(--color-surface);
+    border: 1px solid var(--color-border-soft); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);
+    animation: fade-in var(--duration-slow) var(--ease-out);
+  }
+  @media (min-width: 640px) { .ds-wait { gap: 28px; padding: 24px; } }
+  .ds-wait-enso { position: relative; flex: none; width: 80px; height: 80px; display: grid; place-items: center; }
+  @media (min-width: 640px) { .ds-wait-enso { width: 104px; height: 104px; } }
+  .ds-wait-enso svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-96deg); }
+  .ds-wait-track { fill: none; stroke: var(--color-border-soft); stroke-width: 2; }
+  .ds-wait-arc { fill: none; stroke: var(--color-accent); stroke-width: 3.5; stroke-linecap: round; transition: stroke-dashoffset 1s linear; }
+  .ds-wait-breath {
+    position: absolute; inset: 18%; border-radius: 50%; background: var(--color-accent-soft);
+    animation: ds-breathe 8s ease-in-out infinite;
+  }
+  .ds-wait-body { flex: 1 1 14rem; min-width: 0; }
+  .ds-wait-cue { position: relative; font-family: var(--font-display); font-size: 15px; color: var(--color-accent-text); }
+  .ds-wait-stages { display: grid; gap: 6px; font-size: 14px; }
+  .ds-wait-stages li { display: flex; align-items: center; gap: 10px; color: var(--color-ink-faint); transition: color var(--duration-slow) var(--ease-standard); }
+  .ds-wait-stages li[data-state='done'] { color: var(--color-ink-soft); }
+  .ds-wait-stages li[data-state='current'] { color: var(--color-ink); font-weight: 500; }
+  .ds-wait-mark {
+    flex: none; display: grid; place-items: center; width: 16px; height: 16px; border-radius: 50%;
+    border: 1.5px solid var(--color-border-strong); color: var(--color-ink-soft);
+  }
+  .ds-wait-stages li[data-state='done'] .ds-wait-mark { border-color: transparent; background: var(--color-paper-deep); }
+  .ds-wait-stages li[data-state='current'] .ds-wait-mark { border-color: var(--color-accent); background: var(--color-accent); box-shadow: 0 0 0 3px var(--color-accent-soft); }
+  .ds-wait-note { font-family: var(--font-display); font-size: 15px; line-height: 1.7; color: var(--color-ink-soft); animation: fade-in 1.2s var(--ease-standard); }
+
   /* ---- Table ---- */
   .ds-table { width: 100%; border-collapse: collapse; font-size: 14px; }
   .ds-table th { padding: 10px 14px; text-align: left; font-size: 12px; font-weight: 500; color: var(--color-ink-soft); border-bottom: 1px solid var(--color-border-soft); }
@@ -402,12 +432,15 @@
 }
 @keyframes stamp-ring { from { opacity: 0.5; transform: scale(1); } to { opacity: 0; transform: scale(1.7); } }
 @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+/* One breath: 4s in, 4s out. The only slow loop in the system (WaitPanel). */
+@keyframes ds-breathe { 0%, 100% { transform: scale(0.62); opacity: 0.6; } 50% { transform: scale(1); opacity: 1; } }
 @keyframes drift { from { transform: scale(1); } to { transform: scale(1.06); } }
 
 @media (prefers-reduced-motion: reduce) {
   .ds-reveal { animation: none !important; }
   .ds-skeleton { animation: none !important; background: color-mix(in srgb, var(--color-border-soft) 60%, transparent); }
   .ds-stamp::after { display: none; }
+  .ds-wait-breath { animation: none !important; transform: scale(0.85); }
   *, *::before, *::after {
     animation-duration: 0.01ms !important; animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important; scroll-behavior: auto !important;

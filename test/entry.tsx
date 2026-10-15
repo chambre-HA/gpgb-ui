@@ -29,3 +29,11 @@ import { NavLinks, LinkProvider } from '../src/index'
 const Custom = (p: React.AnchorHTMLAttributes<HTMLAnchorElement>) => <a data-custom-link="1" {...p} />
 const host = document.createElement('div'); host.id = 'linkhost'; document.body.appendChild(host)
 createRoot(host).render(<LinkProvider value={Custom}><NavLinks items={[{ label: 'x', href: '/x', current: true }]} /></LinkProvider>)
+
+// WaitPanel: one with time-estimated stages, one with real progress + cancel.
+import { WaitPanel } from '../src/index'
+const wh = document.createElement('div'); wh.id = 'waithost'; document.body.appendChild(wh)
+createRoot(wh).render(<>
+  <WaitPanel title="正在撰写文稿" stages={['一', '二', '三', '四']} expectedSeconds={4} notes={['a', 'b']} />
+  <div id="wait2"><WaitPanel title="Recording" lang="en" progress={0.5} detail="6 of 12" onCancel={() => { document.body.dataset.cancelled = '1' }} /></div>
+</>)

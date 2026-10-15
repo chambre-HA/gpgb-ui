@@ -9,7 +9,7 @@ Reference app: **greatpath-draw**. Where apps disagreed, greatpath-draw won; gap
 2. **One orange.** `accent` (#ff7f20, the VI primary) is the only brand colour: primary action, focus, selection, links on hover. One primary button per view.
 3. **Soft shapes.** Pills for actions and labels, rounded cards, hairline borders. Shadows are faint.
 4. **Serif for voice, sans for work.** Noto Serif SC for titles and quotes; Noto Sans SC for everything else, including long reading text.
-5. **Quiet motion.** Short ease-out entrances that answer an action; nothing loops except spinners/skeletons. Reduced-motion flattens all of it.
+5. **Quiet motion.** Short ease-out entrances that answer an action; nothing loops except spinners/skeletons and the long-wait breath. Reduced-motion flattens all of it.
 6. **Dark mode is automatic** (`prefers-color-scheme`); never branch on theme in components, use tokens.
 
 ## Colour tokens
@@ -64,6 +64,7 @@ Use as Tailwind utilities: `bg-paper text-ink-soft border-border-soft`. No raw h
 | Alert | `ds-alert` `-danger -warn` / `<Alert>` | Inline, persistent messages. |
 | Empty state | `ds-empty` / `<EmptyState>` | Serif title, hint, one action. |
 | Skeleton/Spinner | `ds-skeleton`, `ds-spinner` | Skeleton mirrors final layout; spinner only for <3s waits. |
+| Long wait | `ds-wait` / `<WaitPanel title stages progress expectedSeconds detail notes onCancel>` | Waits over ~3s (AI writing, recording, rendering). An ensō ring fills with real `progress` or a time estimate (slows near the end, stops at 92%, says "比平时久一点" past 1.25× `expectedSeconds`); a circle breathes 4s in / 4s out with 吸 / 呼; named `stages` tick off; `notes` change once per breath. Replaces the button that started the work, so only one thing is spinning. Announces the title + current stage politely, never the clock. |
 | Table | `ds-table` | Hairline rows, hover `paper-deep`. |
 | Header | `ds-header` / `<SiteHeader>` | Graphic logo `assets/logo/daoshang-horizontal-mark-dark.png` (h-6, `brand-logo` flips it light in dark mode; also `…-bare-dark.png` without the brush mark) + a 1px vertical hairline (`ds-brand-divider`, 20px tall, `border-strong` at 55%) + serif app title + right-aligned actions. The divider separates the brand mark from the app name because the mark is lettering; it shows only when there is an app title. Copy the file into the app's `public/logo/`. |
 | Link | `ds-link` | Soft ink, accent + underline on hover. |
@@ -82,9 +83,10 @@ Tokens: `--duration-fast` 150ms (hover/press), `--duration-base` 200ms (modal, s
 | Link underline | `ds-link` | Underline draws in from the left on hover |
 | Switch | `ds-switch` | Thumb settles with a small overshoot |
 | Skeleton | `ds-skeleton` | Soft sweep while loading (not a blink) |
+| Breath | `ds-wait-breath` (in `<WaitPanel>`) | 8s breath (4 in, 4 out) for long waits. The one slow loop |
 | Slideshow | `animate-fade-in` + `animate-drift` | Photo cross-fade and slow Ken Burns (from gpgb-albums) |
 
-Rules: one flourish per view; everything else is quiet feedback that answers an action. Move at most 10px (the stamp excepted). Animate transform, opacity and shadow only, never layout. Stagger only on first load, never replay entrances on content people are reading. Nothing loops except spinner and skeleton. `prefers-reduced-motion` removes all animation and transition, scroll reveal included.
+Rules: one flourish per view; everything else is quiet feedback that answers an action. Move at most 10px (the stamp excepted). Animate transform, opacity and shadow only, never layout. Stagger only on first load, never replay entrances on content people are reading. Nothing loops except spinner, skeleton and the long-wait breath. `prefers-reduced-motion` removes all animation and transition, scroll reveal included.
 
 ## Navigation
 | Piece | React | Notes |
@@ -143,6 +145,7 @@ Warm, plain, respectful: a helpful neighbour at the community centre. Chinese (�
 | Empty state | 还没有海报。从模板开始，或上传背景图。 | 暂无数据 |
 | Success | 已发布。 · Published. | 操作成功！ |
 | Loading (over 1s) | 正在生成海报… | 请稍候 |
+| Long wait (over 3s) | `<WaitPanel>`: 正在撰写文稿 + stages + 通常约 1 分钟 | 请耐心等待…… |
 | Permission | 你只有查看权限。联系管理员可申请编辑。 | 无权访问 |
 Rules: cancel is always 取消 / Cancel. Errors give the cause then the fix, no codes up front, no "Oops". Empty states say what belongs there plus one action. The seal stamp is for big successes only. Chinese uses full-width punctuation (，。：); English uses sentence case, never all-caps sentences. Put a space between Chinese and numbers or Latin words (更新于 3 分钟前). Dates: 2026年10月5日 / 5 Oct 2026. Don't translate proper names. Icon-only buttons carry an `aria-label` in the page language.
 Code: `labels.zh` / `labels.en` (and `t(lang, key)`) hold the standard strings (取消, 确认, 保存, 删除, 关闭, 重试, 返回, 下一步, 登录, 退出登录, 设置, 帮助…). Components accept `lang="zh" | "en"` (default zh).
