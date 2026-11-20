@@ -256,6 +256,10 @@ Don't
 
 16:9 slides use the same tokens: `paper` content slides with `ink` serif titles and a `border-soft` hairline, and a single dark cover (`paper-dark`, `ink-dark`, `accent-dark`). The logo sits bottom-right on every slide, light mark on the cover, dark mark elsewhere. Orange is limited to the section icon, list markers and the cover rule. Full rules and sizes in `DESIGN_SYSTEM.md` under "Decks (slides)".
 
+## App guides
+
+A how-to for an app is a `/guide` page plus a matching 16:9 deck, both from the same 390 × 844 phone screenshots (`public/guide/*.webp`) and the same marker points in CSS px. Each numbered step has a numbered `accent` marker on the screenshot. Layouts: screen + steps (default), two screens, anatomy strip + legend, flow cards, desktop + icon rows, tip cards, one `accent-soft` note band. The deck is built with `decks/guide-kit.cjs` (pptxgenjs). Full rules in `DESIGN_SYSTEM.md` under "App guides".
+
 ## Known exceptions
 
 - White on orange fills in light mode is 2.5:1 (3.4:1 on hover), below AA. Accepted to match greatpath-draw. Mitigation: labels stay 14px+ medium, never the only signal, and focus uses the separate `focus` token.

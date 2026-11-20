@@ -208,5 +208,39 @@ For presentations and PDFs that explain the system or an app: 16:9, built from t
 
 OfficeCLI notes (non-ASCII working filenames are rejected, VPN TLS fallbacks, icon and shape numbering) live in `mindful-decks/CLAUDE.md`.
 
+## App guides (how-to page + deck)
+How to explain an app to the people who run it (a host, an admin): one in-app guide page and a matching 16:9 deck, both built from the same phone screenshots and the same marker coordinates, so they can't drift apart. Reference: gpgb-dingke's 主持人指南 (`app/guide/page.tsx`, `docs/host-guide/`). This is the second deck style beside "Decks (slides)" above: a guide is about screens, so it is screenshot-led, where a 设计规范 deck is rule-led.
+
+**Screenshots**
+| Thing | Rule |
+|---|---|
+| Phone | 390 × 844 CSS px at 3× (e.g. `agent-browser set device "iPhone 14"`), saved 780 × 1688 webp in `public/guide/`. Desktop 1440 × 900. A strip (one bar, one dialog) is cropped from a 3× shot at its own pixel size |
+| Data | A real-looking class or workspace (示例班, a few named people), never test codes or "Test". Seat or create the extra people with small scripts against the dev server, and rename leftovers in the DOM just before the shot |
+| Markers | Numbered `accent` discs with a white 2px ring and a small shadow, centred on the control. Their points are written in the shot's CSS px (`[x, y]` in 390 × 844), never in slide inches or %; the page and the deck take the **same numbers** |
+| Retake | After any visible UI change on a shown screen, retake that shot and check every marker still sits on its target. Keep the retake recipe next to the guide (README) |
+
+**One step = one marker.** A slide or section is a numbered list (title + one plain line), and step *n*'s marker on the screenshot carries the same *n*. A step with no single control to point at (翻到最后一页, 大家回到等候画面) keeps its number and has no marker. At most 6 steps per screen; more means two screens.
+
+**Layouts** (deck: `decks/guide-kit.cjs`; page: the same shapes in Tailwind)
+| Layout | Use |
+|---|---|
+| Screen + steps | The default. Steps on the left (`stepsWithMarkers`), the phone on the right in an `ink` frame with rounded corners (`phone`, `PHONE_RIGHT`). Page: the phone above the steps on a phone, beside them from `sm` |
+| Two screens | A before/after (type a message → the banner it makes). Two phones side by side, markers numbered across both |
+| Anatomy | A cropped strip (a toolbar, a dock) large in a `surface` card, markers on each button, and a legend of "title + two words" in four columns under it (`shotCard` + `legend`) |
+| Flow | Up to four `surface` cards joined by arrows: numbered discs for a sequence (press, speak, release, heard), or a soft icon with a big faint numeral for an overview (`flow`) |
+| Desktop | The desktop shot left, three icon + title + line rows right (`iconList`) |
+| Tips | Up to six `surface` cards, three across, each a soft icon disc, a title and one line (`tips`). The last slide |
+| Note band | One per slide at most: `accent-soft` band, `accent-text` words, a Lucide icon for a tip or caveat (`note`). `disc` variant (white icon on an `accent` disc) only when the band *is* the slide's point |
+
+**Cover**: the dark set as in "Decks", title = what the guide is for (主持人指南), kicker = app name · domain, one sentence of scope, and a desktop shot with a phone shot overlapping its lower right (`heroShots`).
+
+**Differences from the rule-led decks above**, on purpose: screenshots and their frames carry a soft shadow (a flat screenshot disappears into `paper`); the logo and the deck's name sit bottom-left as a footer with the page number bottom-right; cards are `surface` with a `border-soft` edge. Everything else (tokens, type, `accent` only for markers/discs/icons, Fade only) is the same.
+
+**Voice**: written for the person doing it, in the order they do it ("点「开始定课」后…"). Name buttons by their visible label in 「」. Each line says what happens, not what the code does. Say what other people see when it affects them (每位同修都会看到).
+
+**Building the deck**: `require('@vibeuncle/gpgb-ui/decks/guide-kit.cjs')`, `guideDeck(pptxgen, { title, applyTheme })`, then `await g.useShots('public/guide', 'docs/…/img')` so the deck reads the page's own screenshots (PowerPoint can't read webp; the kit writes PNG copies). The caller installs `pptxgenjs react react-dom sharp react-icons`; none are dependencies of this package. Render with LibreOffice and look at every slide before handing it over; keep the `.pptx` and the PNG copies out of git.
+
+**The page**: `/guide`, public, linked from wherever the person needs it (the ⋯ sheet's 帮助, a book icon beside the main action, opening in a new tab). `PageShell` + `PageTitle`, a jump list of sections, each a `border-soft` rule, serif title, lede, then the layouts above. Markers on the page are placed by % of the 390 × 844 box, so they follow the image at any width. When a second app gets a guide page, move its `Phone`/`Marker`/`Steps`/`Note` into this package as components.
+
 ## Governance
 Change tokens here first, then bump the apps; never edit a copy inside an app. Add a component only when 2+ apps need it. Update this file and `styles/` in the same commit.

@@ -2,6 +2,10 @@
 
 Versions follow semver while 0.x: **minor** = new components or token changes that may shift appearance, **patch** = fixes. Apps pin with `^0.x.0`.
 
+## 0.6.0
+- **App guides:** an "App guides (how-to page + deck)" section in `DESIGN_SYSTEM.md` (summary in `DESIGN.md`): screenshot size and data, numbered markers in the screenshot's CSS px shared by the page and the deck, one step = one marker, layouts (screen + steps, two screens, anatomy, flow, desktop, tips, note band), cover, voice, and how to build and check the deck. Learnt from gpgb-dingke's 主持人指南.
+- **`decks/guide-kit.cjs`** (`@vibeuncle/gpgb-ui/decks/guide-kit.cjs`): a pptxgenjs kit for those decks, with the tokens, cover and content layouts, logo, and `phone`, `shotCard`, `dot`, `stepsWithMarkers`, `note`, `flow`, `legend`, `iconList`, `tips`, `heroShots`, `useShots` (reads the page's webp screenshots). Node only; the caller brings pptxgenjs, react, react-dom, sharp and react-icons. No CSS or component changes.
+
 ## 0.5.0
 - **`<WaitPanel>` / `ds-wait`** for waits over ~3s (AI writing, recording, rendering): an ensō ring that fills with real or estimated progress, a breathing circle (4s in, 4s out, 吸 / 呼), named stages, elapsed time against the usual duration, a gentle line per breath, optional cancel. `estimateProgress()` exported. New labels `breatheIn`, `breatheOut`, `breatheHint`, `waitUsually`, `waitLonger`.
 - Motion: the breath (`ds-breathe`) is the one slow loop allowed; reduced motion holds it still.
