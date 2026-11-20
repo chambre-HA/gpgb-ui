@@ -1,6 +1,6 @@
 {
   "name": "@vibeuncle/gpgb-ui",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "大道大商 shared design system: tokens, CSS components, React components, style guide",
   "license": "UNLICENSED",
   "repository": {
@@ -29,6 +29,7 @@
     "src",
     "styles",
     "assets",
+    "decks",
     "DESIGN.md",
     "DESIGN_SYSTEM.md",
     "README.md",
@@ -40,7 +41,8 @@
     "./components.css": "./styles/components.css",
     "./fonts.css": "./styles/fonts.css",
     "./styles.css": "./styles/index.css",
-    "./logo/*": "./assets/logo/*"
+    "./logo/*": "./assets/logo/*",
+    "./decks/*": "./decks/*"
   },
   "peerDependencies": {
     "react": ">=18",
